@@ -1,0 +1,4147 @@
+[
+  {
+    "spanish": "hola",
+    "english": "hello",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "greetings",
+    "acceptedEn": [
+      "hi",
+      "hey"
+    ]
+  },
+  {
+    "spanish": "adiós",
+    "english": "goodbye",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "greetings",
+    "acceptedEn": [
+      "bye"
+    ]
+  },
+  {
+    "spanish": "gracias",
+    "english": "thank you",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "politeness",
+    "acceptedEn": [
+      "thanks"
+    ]
+  },
+  {
+    "spanish": "sí",
+    "english": "yes",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "basics"
+  },
+  {
+    "spanish": "no",
+    "english": "no",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "basics"
+  },
+  {
+    "spanish": "agua",
+    "english": "water",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "pan",
+    "english": "bread",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "leche",
+    "english": "milk",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "café",
+    "english": "coffee",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "cerveza",
+    "english": "beer",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "arroz",
+    "english": "rice",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "pollo",
+    "english": "chicken",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "pescado",
+    "english": "fish",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "queso",
+    "english": "cheese",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "huevo",
+    "english": "egg",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "fruta",
+    "english": "fruit",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "carne",
+    "english": "meat",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "azúcar",
+    "english": "sugar",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "sal",
+    "english": "salt",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "casa",
+    "english": "house",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "home",
+    "acceptedEn": [
+      "home"
+    ]
+  },
+  {
+    "spanish": "puerta",
+    "english": "door",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "home"
+  },
+  {
+    "spanish": "mesa",
+    "english": "table",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "home"
+  },
+  {
+    "spanish": "silla",
+    "english": "chair",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "home"
+  },
+  {
+    "spanish": "cama",
+    "english": "bed",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "home"
+  },
+  {
+    "spanish": "libro",
+    "english": "book",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "school"
+  },
+  {
+    "spanish": "lápiz",
+    "english": "pencil",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "school"
+  },
+  {
+    "spanish": "escuela",
+    "english": "school",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "school"
+  },
+  {
+    "spanish": "maestro",
+    "english": "teacher",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "school",
+    "acceptedEn": [
+      "instructor"
+    ]
+  },
+  {
+    "spanish": "amigo",
+    "english": "friend",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people"
+  },
+  {
+    "spanish": "familia",
+    "english": "family",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people"
+  },
+  {
+    "spanish": "madre",
+    "english": "mother",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people",
+    "acceptedEn": [
+      "mom",
+      "mum"
+    ]
+  },
+  {
+    "spanish": "padre",
+    "english": "father",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people",
+    "acceptedEn": [
+      "dad"
+    ]
+  },
+  {
+    "spanish": "hermano",
+    "english": "brother",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people"
+  },
+  {
+    "spanish": "hombre",
+    "english": "man",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people"
+  },
+  {
+    "spanish": "mujer",
+    "english": "woman",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people"
+  },
+  {
+    "spanish": "niño",
+    "english": "child",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "people",
+    "acceptedEn": [
+      "kid",
+      "boy"
+    ]
+  },
+  {
+    "spanish": "gato",
+    "english": "cat",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "animals"
+  },
+  {
+    "spanish": "perro",
+    "english": "dog",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "animals"
+  },
+  {
+    "spanish": "pájaro",
+    "english": "bird",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "animals"
+  },
+  {
+    "spanish": "pez",
+    "english": "fish",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "animals",
+    "acceptedEn": [
+      "fish animal"
+    ]
+  },
+  {
+    "spanish": "árbol",
+    "english": "tree",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "flor",
+    "english": "flower",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "sol",
+    "english": "sun",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "luna",
+    "english": "moon",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "mar",
+    "english": "sea",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature",
+    "acceptedEn": [
+      "ocean"
+    ]
+  },
+  {
+    "spanish": "río",
+    "english": "river",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "montaña",
+    "english": "mountain",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "nature"
+  },
+  {
+    "spanish": "ciudad",
+    "english": "city",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "calle",
+    "english": "street",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "playa",
+    "english": "beach",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "rojo",
+    "english": "red",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "azul",
+    "english": "blue",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "verde",
+    "english": "green",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "amarillo",
+    "english": "yellow",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "negro",
+    "english": "black",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "blanco",
+    "english": "white",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "colors"
+  },
+  {
+    "spanish": "uno",
+    "english": "one",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "dos",
+    "english": "two",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "tres",
+    "english": "three",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "cuatro",
+    "english": "four",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "cinco",
+    "english": "five",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "seis",
+    "english": "six",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "siete",
+    "english": "seven",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "ocho",
+    "english": "eight",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "nueve",
+    "english": "nine",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "diez",
+    "english": "ten",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "numbers"
+  },
+  {
+    "spanish": "hoy",
+    "english": "today",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "ayer",
+    "english": "yesterday",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "mañana",
+    "english": "tomorrow",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "ahora",
+    "english": "now",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "tarde",
+    "english": "afternoon",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time",
+    "acceptedEn": [
+      "late"
+    ]
+  },
+  {
+    "spanish": "noche",
+    "english": "night",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "año",
+    "english": "year",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "día",
+    "english": "day",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "hora",
+    "english": "hour",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "minuto",
+    "english": "minute",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "semana",
+    "english": "week",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "time"
+  },
+  {
+    "spanish": "feliz",
+    "english": "happy",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "triste",
+    "english": "sad",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "cansado",
+    "english": "tired",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "enfermo",
+    "english": "sick",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "ill"
+    ]
+  },
+  {
+    "spanish": "contento",
+    "english": "glad",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "happy"
+    ]
+  },
+  {
+    "spanish": "calor",
+    "english": "heat",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "weather"
+  },
+  {
+    "spanish": "frío",
+    "english": "cold",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "weather"
+  },
+  {
+    "spanish": "lluvia",
+    "english": "rain",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "weather"
+  },
+  {
+    "spanish": "nieve",
+    "english": "snow",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "weather"
+  },
+  {
+    "spanish": "viento",
+    "english": "wind",
+    "difficulty": "easy",
+    "type": "word",
+    "category": "weather"
+  },
+  {
+    "spanish": "por favor",
+    "english": "please",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "politeness"
+  },
+  {
+    "spanish": "buenos días",
+    "english": "good morning",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings"
+  },
+  {
+    "spanish": "buenas tardes",
+    "english": "good afternoon",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings",
+    "acceptedEn": [
+      "good evening"
+    ]
+  },
+  {
+    "spanish": "buenas noches",
+    "english": "good night",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings"
+  },
+  {
+    "spanish": "de nada",
+    "english": "you're welcome",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "politeness",
+    "acceptedEn": [
+      "no problem"
+    ]
+  },
+  {
+    "spanish": "lo siento",
+    "english": "I'm sorry",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "politeness",
+    "acceptedEn": [
+      "sorry"
+    ]
+  },
+  {
+    "spanish": "perdón",
+    "english": "excuse me",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "politeness",
+    "acceptedEn": [
+      "sorry",
+      "pardon"
+    ]
+  },
+  {
+    "spanish": "mucho gusto",
+    "english": "glad meet",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings",
+    "acceptedEn": [
+      "nice meet",
+      "pleased meet"
+    ]
+  },
+  {
+    "spanish": "¿qué tal?",
+    "english": "how are you",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings",
+    "acceptedEn": [
+      "whats up",
+      "you good"
+    ]
+  },
+  {
+    "spanish": "hasta luego",
+    "english": "see you later",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "greetings",
+    "acceptedEn": [
+      "see you"
+    ]
+  },
+  {
+    "spanish": "a la derecha",
+    "english": "to the right",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "travel"
+  },
+  {
+    "spanish": "a la izquierda",
+    "english": "to the left",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "travel"
+  },
+  {
+    "spanish": "en el centro",
+    "english": "downtown",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "travel",
+    "acceptedEn": [
+      "city center"
+    ]
+  },
+  {
+    "spanish": "de aquí",
+    "english": "from here",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "para mí",
+    "english": "for me",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "conmigo",
+    "english": "with me",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "sin ti",
+    "english": "without you",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "muy bien",
+    "english": "very well",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "great",
+      "fine"
+    ]
+  },
+  {
+    "spanish": "muy mal",
+    "english": "very badly",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "terribly"
+    ]
+  },
+  {
+    "spanish": "un poco",
+    "english": "a little",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "a bit"
+    ]
+  },
+  {
+    "spanish": "a tiempo",
+    "english": "on time",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "en casa",
+    "english": "at home",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "home"
+  },
+  {
+    "spanish": "por la mañana",
+    "english": "each morning",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "time",
+    "acceptedEn": [
+      "mornings"
+    ]
+  },
+  {
+    "spanish": "por la noche",
+    "english": "at night",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "time"
+  },
+  {
+    "spanish": "todo el día",
+    "english": "all day",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "time"
+  },
+  {
+    "spanish": "cada vez",
+    "english": "each time",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics"
+  },
+  {
+    "spanish": "otra vez",
+    "english": "again",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "once more"
+    ]
+  },
+  {
+    "spanish": "en serio",
+    "english": "seriously",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "really"
+    ]
+  },
+  {
+    "spanish": "de verdad",
+    "english": "really",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "truly"
+    ]
+  },
+  {
+    "spanish": "por supuesto",
+    "english": "of course",
+    "difficulty": "easy",
+    "type": "phrase",
+    "category": "basics",
+    "acceptedEn": [
+      "certainly"
+    ]
+  },
+  {
+    "spanish": "buen provecho",
+    "english": "enjoy meal",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "food",
+    "acceptedEn": [
+      "bon appetit"
+    ]
+  },
+  {
+    "spanish": "hace calor",
+    "english": "it's hot",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "weather"
+  },
+  {
+    "spanish": "hace frío",
+    "english": "it's cold",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "weather"
+  },
+  {
+    "spanish": "tengo sed",
+    "english": "I'm thirsty",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "health"
+  },
+  {
+    "spanish": "tengo hambre",
+    "english": "I'm hungry",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "health"
+  },
+  {
+    "spanish": "me gusta",
+    "english": "I like it",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "I like"
+    ]
+  },
+  {
+    "spanish": "no entiendo",
+    "english": "not understand",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "dont understand"
+    ]
+  },
+  {
+    "spanish": "no sé",
+    "english": "not know",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "dont know",
+      "no idea"
+    ]
+  },
+  {
+    "spanish": "puede ser",
+    "english": "maybe",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "perhaps"
+    ]
+  },
+  {
+    "spanish": "al menos",
+    "english": "at least",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics"
+  },
+  {
+    "spanish": "por eso",
+    "english": "thats why",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "so therefore"
+    ]
+  },
+  {
+    "spanish": "a veces",
+    "english": "sometimes",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics"
+  },
+  {
+    "spanish": "de nuevo",
+    "english": "again",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics"
+  },
+  {
+    "spanish": "en total",
+    "english": "in total",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics"
+  },
+  {
+    "spanish": "por fin",
+    "english": "finally",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "at last"
+    ]
+  },
+  {
+    "spanish": "sin embargo",
+    "english": "however",
+    "difficulty": "easy",
+    "type": "collocation",
+    "category": "basics",
+    "acceptedEn": [
+      "nevertheless"
+    ]
+  },
+  {
+    "spanish": "¡ojo!",
+    "english": "watch out",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "look out"
+    ],
+    "note": "Often warns of danger or tricks."
+  },
+  {
+    "spanish": "¡vaya!",
+    "english": "wow",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "oh dear"
+    ],
+    "note": "Reaction to surprise."
+  },
+  {
+    "spanish": "ni modo",
+    "english": "oh well",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "too bad"
+    ],
+    "note": "Accepting what can't change (MX tone)."
+  },
+  {
+    "spanish": "de una",
+    "english": "right away",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "at once"
+    ],
+    "note": "Informal 'immediately'."
+  },
+  {
+    "spanish": "ni idea",
+    "english": "no idea",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "clueless"
+    ],
+    "note": "Casual 'I have no clue'."
+  },
+  {
+    "spanish": "qué va",
+    "english": "no way",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "nonsense"
+    ],
+    "note": "Disagreement or disbelief."
+  },
+  {
+    "spanish": "todo bien",
+    "english": "all good",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "its fine",
+      "all fine"
+    ],
+    "note": "Reassuring reply."
+  },
+  {
+    "spanish": "qué pena",
+    "english": "what a shame",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "too bad"
+    ],
+    "note": "Sympathy or mild regret."
+  },
+  {
+    "spanish": "menos mal",
+    "english": "thank goodness",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "acceptedEn": [
+      "just as well"
+    ],
+    "note": "Relief after worry."
+  },
+  {
+    "spanish": "ya veremos",
+    "english": "we'll see",
+    "difficulty": "easy",
+    "type": "idiom",
+    "category": "expressions",
+    "note": "Dodging a firm answer."
+  },
+  {
+    "spanish": "viaje",
+    "english": "trip",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "billete",
+    "english": "ticket",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "aeropuerto",
+    "english": "airport",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "hotel",
+    "english": "hotel",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "maleta",
+    "english": "suitcase",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "pasaporte",
+    "english": "passport",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "equipaje",
+    "english": "luggage",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "baggage"
+    ]
+  },
+  {
+    "spanish": "retraso",
+    "english": "delay",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "vuelo",
+    "english": "flight",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "habitación",
+    "english": "room",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "bedroom"
+    ]
+  },
+  {
+    "spanish": "reserva",
+    "english": "reservation",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "booking"
+    ]
+  },
+  {
+    "spanish": "mapa",
+    "english": "map",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "estación",
+    "english": "station",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "tren",
+    "english": "train",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "autobús",
+    "english": "bus",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel"
+  },
+  {
+    "spanish": "coche",
+    "english": "car",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "auto"
+    ]
+  },
+  {
+    "spanish": "bicicleta",
+    "english": "bicycle",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "bike"
+    ]
+  },
+  {
+    "spanish": "callejón",
+    "english": "alley",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "plaza",
+    "english": "square",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "iglesia",
+    "english": "church",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "museo",
+    "english": "museum",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places"
+  },
+  {
+    "spanish": "teatro",
+    "english": "theater",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places",
+    "acceptedEn": [
+      "theatre"
+    ]
+  },
+  {
+    "spanish": "cine",
+    "english": "cinema",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "places",
+    "acceptedEn": [
+      "movies"
+    ]
+  },
+  {
+    "spanish": "restaurante",
+    "english": "restaurant",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "menú",
+    "english": "menu",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "cuenta",
+    "english": "bill",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food",
+    "acceptedEn": [
+      "check"
+    ]
+  },
+  {
+    "spanish": "propina",
+    "english": "tip",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "cocina",
+    "english": "kitchen",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food",
+    "acceptedEn": [
+      "cooking"
+    ]
+  },
+  {
+    "spanish": "receta",
+    "english": "recipe",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "picante",
+    "english": "spicy",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food",
+    "acceptedEn": [
+      "hot"
+    ]
+  },
+  {
+    "spanish": "dulce",
+    "english": "sweet",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "salado",
+    "english": "salty",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "food"
+  },
+  {
+    "spanish": "trabajo",
+    "english": "job",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work",
+    "acceptedEn": [
+      "work noun"
+    ]
+  },
+  {
+    "spanish": "empleo",
+    "english": "employment",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "sueldo",
+    "english": "salary",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work",
+    "acceptedEn": [
+      "wages"
+    ]
+  },
+  {
+    "spanish": "jefe",
+    "english": "boss",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "reunión",
+    "english": "meeting",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "oficina",
+    "english": "office",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "proyecto",
+    "english": "project",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "éxito",
+    "english": "success",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "fracaso",
+    "english": "failure",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "esfuerzo",
+    "english": "effort",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "meta",
+    "english": "goal",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "work",
+    "acceptedEn": [
+      "aim"
+    ]
+  },
+  {
+    "spanish": "decisión",
+    "english": "decision",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "problema",
+    "english": "problem",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "solución",
+    "english": "solution",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "razón",
+    "english": "reason",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "resultado",
+    "english": "result",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "cambio",
+    "english": "change",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "duda",
+    "english": "doubt",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "esperanza",
+    "english": "hope",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "miedo",
+    "english": "fear",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "valor",
+    "english": "courage",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "bravery"
+    ]
+  },
+  {
+    "spanish": "paciencia",
+    "english": "patience",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "costumbre",
+    "english": "habit",
+    "difficulty": "medium",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "custom"
+    ]
+  },
+  {
+    "spanish": "tener prisa",
+    "english": "feel rushed",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "in hurry"
+    ]
+  },
+  {
+    "spanish": "dar las gracias",
+    "english": "say thanks",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "give thanks"
+    ]
+  },
+  {
+    "spanish": "echar una mano",
+    "english": "lend a hand",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "help out"
+    ]
+  },
+  {
+    "spanish": "hacer cola",
+    "english": "stand in line",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "queue up"
+    ]
+  },
+  {
+    "spanish": "tomar el sol",
+    "english": "sunbathe",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "get sun"
+    ]
+  },
+  {
+    "spanish": "poner la mesa",
+    "english": "set the table",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "lavar los platos",
+    "english": "wash the dishes",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "do dishes"
+    ]
+  },
+  {
+    "spanish": "hacer la cama",
+    "english": "make the bed",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "sacar la basura",
+    "english": "take out trash",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "perder el tren",
+    "english": "miss the train",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "coger un taxi",
+    "english": "take a taxi",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "grab a cab"
+    ]
+  },
+  {
+    "spanish": "subir las escaleras",
+    "english": "climb the stairs",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "bajar la voz",
+    "english": "lower your voice",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "subir de precio",
+    "english": "rise price",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "cost rises"
+    ]
+  },
+  {
+    "spanish": "bajar de peso",
+    "english": "lose weight",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "tener razón",
+    "english": "be right",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "no importa",
+    "english": "never mind",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "no matter"
+    ]
+  },
+  {
+    "spanish": "da igual",
+    "english": "same thing",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "no difference"
+    ]
+  },
+  {
+    "spanish": "me da igual",
+    "english": "I don't care",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "all the same"
+    ]
+  },
+  {
+    "spanish": "en realidad",
+    "english": "actually",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "in fact"
+    ]
+  },
+  {
+    "spanish": "por lo general",
+    "english": "generally",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "usually"
+    ]
+  },
+  {
+    "spanish": "a menudo",
+    "english": "often",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "frequently"
+    ]
+  },
+  {
+    "spanish": "de repente",
+    "english": "suddenly",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "all sudden"
+    ]
+  },
+  {
+    "spanish": "en seguida",
+    "english": "right away",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "immediately"
+    ]
+  },
+  {
+    "spanish": "sin duda",
+    "english": "without doubt",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "no doubt"
+    ]
+  },
+  {
+    "spanish": "con cuidado",
+    "english": "carefully",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "with care"
+    ]
+  },
+  {
+    "spanish": "de buena gana",
+    "english": "willingly",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "gladly"
+    ]
+  },
+  {
+    "spanish": "por casualidad",
+    "english": "by chance",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "by accident"
+    ]
+  },
+  {
+    "spanish": "en caso de",
+    "english": "in case of",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases"
+  },
+  {
+    "spanish": "a pesar de",
+    "english": "despite",
+    "difficulty": "medium",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "in spite of"
+    ]
+  },
+  {
+    "spanish": "hacer ejercicio",
+    "english": "exercise",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "health",
+    "acceptedEn": [
+      "work out"
+    ]
+  },
+  {
+    "spanish": "tomar decisiones",
+    "english": "make decisions",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "work"
+  },
+  {
+    "spanish": "tomar nota",
+    "english": "take note",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "school"
+  },
+  {
+    "spanish": "prestar atención",
+    "english": "pay attention",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "school"
+  },
+  {
+    "spanish": "hacer preguntas",
+    "english": "ask questions",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "school"
+  },
+  {
+    "spanish": "dar un paseo",
+    "english": "take a walk",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "leisure"
+  },
+  {
+    "spanish": "echar una siesta",
+    "english": "take a nap",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "daily"
+  },
+  {
+    "spanish": "pasar tiempo",
+    "english": "spend time",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "daily"
+  },
+  {
+    "spanish": "perder tiempo",
+    "english": "waste time",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "daily"
+  },
+  {
+    "spanish": "ganar dinero",
+    "english": "earn money",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "work"
+  },
+  {
+    "spanish": "ahorrar dinero",
+    "english": "save money",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "money"
+  },
+  {
+    "spanish": "gastar dinero",
+    "english": "spend money",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "money"
+  },
+  {
+    "spanish": "pedir perdón",
+    "english": "say sorry",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "politeness",
+    "acceptedEn": [
+      "apologize"
+    ]
+  },
+  {
+    "spanish": "dar la vuelta",
+    "english": "turn around",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "movement"
+  },
+  {
+    "spanish": "seguir adelante",
+    "english": "move forward",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "abstract",
+    "acceptedEn": [
+      "carry on"
+    ]
+  },
+  {
+    "spanish": "tener lugar",
+    "english": "take place",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "events",
+    "acceptedEn": [
+      "happen"
+    ]
+  },
+  {
+    "spanish": "hacer falta",
+    "english": "be needed",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "basics"
+  },
+  {
+    "spanish": "dar miedo",
+    "english": "be scary",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "emotions",
+    "acceptedEn": [
+      "frighten"
+    ]
+  },
+  {
+    "spanish": "dar risa",
+    "english": "be funny",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "emotions",
+    "acceptedEn": [
+      "make laugh"
+    ]
+  },
+  {
+    "spanish": "tener sentido",
+    "english": "make sense",
+    "difficulty": "medium",
+    "type": "collocation",
+    "category": "abstract"
+  },
+  {
+    "spanish": "estar hecho polvo",
+    "english": "be exhausted",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "wiped out"
+    ],
+    "note": "Literally 'made into dust'."
+  },
+  {
+    "spanish": "ser pan comido",
+    "english": "be easy",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "piece cake",
+      "a breeze"
+    ],
+    "note": "Like English 'piece of cake'."
+  },
+  {
+    "spanish": "meter la pata",
+    "english": "mess up",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "slip up"
+    ],
+    "note": "Step in the mud — a blunder."
+  },
+  {
+    "spanish": "quedarse en blanco",
+    "english": "go blank",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "draw blank"
+    ],
+    "note": "Mind empties under pressure."
+  },
+  {
+    "spanish": "no dar pie con bola",
+    "english": "get nowhere",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "fail totally"
+    ],
+    "note": "Can't get footing with the ball."
+  },
+  {
+    "spanish": "ser uña y carne",
+    "english": "be inseparable",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "thick thieves"
+    ],
+    "note": "Nail and flesh — best friends."
+  },
+  {
+    "spanish": "tirar la casa por la ventana",
+    "english": "splurge",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "go all out"
+    ],
+    "note": "Throw the house out the window."
+  },
+  {
+    "spanish": "estar en las nubes",
+    "english": "daydream",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "spaced out"
+    ],
+    "note": "Head in the clouds."
+  },
+  {
+    "spanish": "hablar por los codos",
+    "english": "talk nonstop",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "chatter away"
+    ],
+    "note": "Talk through the elbows."
+  },
+  {
+    "spanish": "ser de armas tomar",
+    "english": "be handful",
+    "difficulty": "medium",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "tough customer"
+    ],
+    "note": "Hard to handle."
+  },
+  {
+    "spanish": "ambiguo",
+    "english": "ambiguous",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "hipótesis",
+    "english": "hypothesis",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic"
+  },
+  {
+    "spanish": "síntesis",
+    "english": "synthesis",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic"
+  },
+  {
+    "spanish": "análisis",
+    "english": "analysis",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic"
+  },
+  {
+    "spanish": "evidencia",
+    "english": "evidence",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic"
+  },
+  {
+    "spanish": "criterio",
+    "english": "criterion",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic",
+    "acceptedEn": [
+      "standard"
+    ]
+  },
+  {
+    "spanish": "enfoque",
+    "english": "approach",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic",
+    "acceptedEn": [
+      "focus"
+    ]
+  },
+  {
+    "spanish": "alcance",
+    "english": "scope",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "academic",
+    "acceptedEn": [
+      "reach"
+    ]
+  },
+  {
+    "spanish": "repercusiones",
+    "english": "repercussions",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "impact"
+    ]
+  },
+  {
+    "spanish": "paradoja",
+    "english": "paradox",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "sesgo",
+    "english": "bias",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "estigma",
+    "english": "stigma",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "empatía",
+    "english": "empathy",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "resiliencia",
+    "english": "resilience",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "coherencia",
+    "english": "coherence",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "discrepancia",
+    "english": "discrepancy",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "arbitrario",
+    "english": "arbitrary",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "inevitable",
+    "english": "inevitable",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "plausible",
+    "english": "plausible",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "sutil",
+    "english": "subtle",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "crucial",
+    "english": "crucial",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "key"
+    ]
+  },
+  {
+    "spanish": "pertinente",
+    "english": "relevant",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "redundante",
+    "english": "redundant",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "implícito",
+    "english": "implicit",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "explícito",
+    "english": "explicit",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "matiz",
+    "english": "nuance",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "reparo",
+    "english": "misgiving",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "scruple"
+    ]
+  },
+  {
+    "spanish": "límite",
+    "english": "limit",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "boundary"
+    ]
+  },
+  {
+    "spanish": "umbral",
+    "english": "threshold",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "premisa",
+    "english": "premise",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "axioma",
+    "english": "axiom",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "dilema",
+    "english": "dilemma",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "tesis",
+    "english": "thesis",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "sinergia",
+    "english": "synergy",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "disrupción",
+    "english": "disruption",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "viabilidad",
+    "english": "viability",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "work"
+  },
+  {
+    "spanish": "rendimiento",
+    "english": "performance",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "work",
+    "acceptedEn": [
+      "yield"
+    ]
+  },
+  {
+    "spanish": "alicaído",
+    "english": "downcast",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "low spirits"
+    ]
+  },
+  {
+    "spanish": "desbordado",
+    "english": "overwhelmed",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "desconcertado",
+    "english": "baffled",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "perplexed"
+    ]
+  },
+  {
+    "spanish": "reacio",
+    "english": "reluctant",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "unwilling"
+    ]
+  },
+  {
+    "spanish": "complaciente",
+    "english": "complacent",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "escéptico",
+    "english": "skeptical",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "doubtful"
+    ]
+  },
+  {
+    "spanish": "cándido",
+    "english": "naive",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "innocent"
+    ]
+  },
+  {
+    "spanish": "perturbador",
+    "english": "disturbing",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "conmovedor",
+    "english": "moving",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions",
+    "acceptedEn": [
+      "touching"
+    ]
+  },
+  {
+    "spanish": "lúgubre",
+    "english": "gloomy",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "emotions"
+  },
+  {
+    "spanish": "tenue",
+    "english": "faint",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "description",
+    "acceptedEn": [
+      "dim"
+    ]
+  },
+  {
+    "spanish": "efímero",
+    "english": "ephemeral",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "fleeting"
+    ]
+  },
+  {
+    "spanish": "ostensible",
+    "english": "ostensible",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "apparent"
+    ]
+  },
+  {
+    "spanish": "ubicuos",
+    "english": "ubiquitous",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "eficaz",
+    "english": "effective",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "efficient"
+    ]
+  },
+  {
+    "spanish": "eficiente",
+    "english": "efficient",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract"
+  },
+  {
+    "spanish": "idóneo",
+    "english": "suitable",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "apt"
+    ]
+  },
+  {
+    "spanish": "sucinto",
+    "english": "succinct",
+    "difficulty": "hard",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "brief"
+    ]
+  },
+  {
+    "spanish": "salir adelante",
+    "english": "get ahead",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "make it"
+    ]
+  },
+  {
+    "spanish": "salir bien",
+    "english": "turn out well",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "go well"
+    ]
+  },
+  {
+    "spanish": "dar con",
+    "english": "come across",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "find by chance"
+    ]
+  },
+  {
+    "spanish": "dar en el clavo",
+    "english": "hit the nail",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "nail it"
+    ],
+    "note": "Get it exactly right."
+  },
+  {
+    "spanish": "echar de menos",
+    "english": "miss someone",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "long for"
+    ],
+    "note": "Feel absence sharply."
+  },
+  {
+    "spanish": "ponerse al día",
+    "english": "catch up",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "get current"
+    ]
+  },
+  {
+    "spanish": "sacar en claro",
+    "english": "figure out",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "sort out"
+    ]
+  },
+  {
+    "spanish": "tener en cuenta",
+    "english": "keep in mind",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "bear mind"
+    ]
+  },
+  {
+    "spanish": "caer en la cuenta",
+    "english": "realize suddenly",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "catch on"
+    ]
+  },
+  {
+    "spanish": "dar por hecho",
+    "english": "take for granted",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "assume done"
+    ]
+  },
+  {
+    "spanish": "hacerse cargo",
+    "english": "take charge",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "take over"
+    ]
+  },
+  {
+    "spanish": "llegar a ser",
+    "english": "become",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "turn into"
+    ]
+  },
+  {
+    "spanish": "dejar caer",
+    "english": "drop hint",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "let slip"
+    ]
+  },
+  {
+    "spanish": "echar raíces",
+    "english": "put down roots",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "settle down"
+    ]
+  },
+  {
+    "spanish": "tomar el pelo",
+    "english": "pull someone's leg",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "tease someone"
+    ]
+  },
+  {
+    "spanish": "ser coser y cantar",
+    "english": "be easy",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "dead easy"
+    ],
+    "note": "Sewing and singing — effortless."
+  },
+  {
+    "spanish": "no tener abuela",
+    "english": "show off",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "brag lots"
+    ],
+    "note": "No grandmother to brag for you."
+  },
+  {
+    "spanish": "estar en el ajo",
+    "english": "be informed",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "know inside",
+      "in loop"
+    ],
+    "note": "In the garlic — insider info."
+  },
+  {
+    "spanish": "más vale tarde",
+    "english": "better late",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "late than never"
+    ],
+    "note": "Short for better late than never."
+  },
+  {
+    "spanish": "a buen seguro",
+    "english": "most likely",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "surely"
+    ]
+  },
+  {
+    "spanish": "por si acaso",
+    "english": "just in case",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "if need be"
+    ]
+  },
+  {
+    "spanish": "sin venir a cuento",
+    "english": "out of nowhere",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "off topic"
+    ],
+    "note": "Doesn't fit the thread."
+  },
+  {
+    "spanish": "de golpe",
+    "english": "all at once",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "suddenly"
+    ]
+  },
+  {
+    "spanish": "de buena fe",
+    "english": "in good faith",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "good faith"
+    ]
+  },
+  {
+    "spanish": "a regañadientes",
+    "english": "reluctantly",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "grudgingly"
+    ]
+  },
+  {
+    "spanish": "con mano firme",
+    "english": "firmly",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "strictly"
+    ]
+  },
+  {
+    "spanish": "a la larga",
+    "english": "eventually",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "long term",
+      "over time"
+    ]
+  },
+  {
+    "spanish": "en el acto",
+    "english": "on the spot",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "immediately"
+    ]
+  },
+  {
+    "spanish": "de puertas adentro",
+    "english": "behind closed doors",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "in private"
+    ]
+  },
+  {
+    "spanish": "a todas horas",
+    "english": "at all hours",
+    "difficulty": "hard",
+    "type": "phrase",
+    "category": "phrases",
+    "acceptedEn": [
+      "constantly"
+    ]
+  },
+  {
+    "spanish": "costar un ojo",
+    "english": "cost arm",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "money",
+    "acceptedEn": [
+      "cost fortune"
+    ],
+    "note": "Short for cost an arm and a leg."
+  },
+  {
+    "spanish": "quedarse a cuadros",
+    "english": "be stunned",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "reactions",
+    "acceptedEn": [
+      "be shocked"
+    ],
+    "note": "Like a checkerboard freeze-frame."
+  },
+  {
+    "spanish": "montar en cólera",
+    "english": "fly into rage",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "emotions",
+    "acceptedEn": [
+      "lose temper"
+    ]
+  },
+  {
+    "spanish": "poner los puntos",
+    "english": "lay down law",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "work",
+    "acceptedEn": [
+      "set straight"
+    ],
+    "note": "Put the dots on the i's."
+  },
+  {
+    "spanish": "ir viento en popa",
+    "english": "go smoothly",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "progress",
+    "acceptedEn": [
+      "go great"
+    ],
+    "note": "Sailing with wind astern."
+  },
+  {
+    "spanish": "estar en babia",
+    "english": "be distracted",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "mind",
+    "acceptedEn": [
+      "be spaced"
+    ],
+    "note": "In Babia — land of daydreams."
+  },
+  {
+    "spanish": "no tener pelos",
+    "english": "speak frankly",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "speech",
+    "acceptedEn": [
+      "be blunt"
+    ],
+    "note": "Not have hairs on the tongue."
+  },
+  {
+    "spanish": "ser aguafiestas",
+    "english": "spoil fun",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "social",
+    "acceptedEn": [
+      "party pooper"
+    ],
+    "note": "Water on the party."
+  },
+  {
+    "spanish": "estar hasta la coronilla",
+    "english": "fed up",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "emotions",
+    "acceptedEn": [
+      "had enough"
+    ],
+    "note": "Up to the crown of the head."
+  },
+  {
+    "spanish": "dar calabazas",
+    "english": "reject date",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "dating",
+    "acceptedEn": [
+      "turn down"
+    ],
+    "note": "Give pumpkins — say no romantically."
+  },
+  {
+    "spanish": "estar en chamas",
+    "english": "be on fire",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "energy",
+    "acceptedEn": [
+      "on roll"
+    ],
+    "note": "In flames — killing it."
+  },
+  {
+    "spanish": "tirar la toalla",
+    "english": "give up",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "effort",
+    "acceptedEn": [
+      "throw towel"
+    ]
+  },
+  {
+    "spanish": "subirse a las barbas",
+    "english": "defy openly",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "conflict",
+    "acceptedEn": [
+      "provoke"
+    ],
+    "note": "Climb onto someone's beard."
+  },
+  {
+    "spanish": "comerse el mundo",
+    "english": "take world",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "ambition",
+    "acceptedEn": [
+      "crush it"
+    ],
+    "note": "Eat the world — unstoppable drive."
+  },
+  {
+    "spanish": "no pegar ojo",
+    "english": "not sleep wink",
+    "difficulty": "hard",
+    "type": "collocation",
+    "category": "sleep",
+    "acceptedEn": [
+      "no sleep"
+    ],
+    "note": "Not stick an eye shut."
+  },
+  {
+    "spanish": "pan comido",
+    "english": "piece cake",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "easy peasy"
+    ],
+    "note": "Same as ser pan comido — easy."
+  },
+  {
+    "spanish": "más vale maña",
+    "english": "brains beat brawn",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "skill wins"
+    ],
+    "note": "Skill beats strength."
+  },
+  {
+    "spanish": "a otro perro",
+    "english": "tell someone else",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "not buying it"
+    ],
+    "note": "That tale's for another dog."
+  },
+  {
+    "spanish": "cría cuervos",
+    "english": "bite back",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "bad karma"
+    ],
+    "note": "Raise crows and they'll peck your eyes."
+  },
+  {
+    "spanish": "donde hubo fuego",
+    "english": "where there's smoke",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "likely affair"
+    ],
+    "note": "Where fire was, embers remain."
+  },
+  {
+    "spanish": "el mundo al revés",
+    "english": "upside down",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "topsy turvy"
+    ],
+    "note": "The world backwards — chaos."
+  },
+  {
+    "spanish": "hablando del rey",
+    "english": "speak devil",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "here they come"
+    ],
+    "note": "Of the king of Rome — they appear."
+  },
+  {
+    "spanish": "más sabe diablo",
+    "english": "old fox knows",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "experience counts"
+    ],
+    "note": "The devil knows more from being old than devil."
+  },
+  {
+    "spanish": "a buenas horas",
+    "english": "about time",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "late help"
+    ],
+    "note": "Good hours — ironic 'finally'."
+  },
+  {
+    "spanish": "en un santiamén",
+    "english": "in flash",
+    "difficulty": "hard",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "in instant"
+    ],
+    "note": "In a holy amen — instantly."
+  },
+  {
+    "spanish": "lacónico",
+    "english": "laconic",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style"
+  },
+  {
+    "spanish": "perentorio",
+    "english": "peremptory",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style",
+    "acceptedEn": [
+      "absolute"
+    ]
+  },
+  {
+    "spanish": "sibylline",
+    "english": "cryptic",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style",
+    "acceptedEn": [
+      "obscure"
+    ]
+  },
+  {
+    "spanish": "efusivo",
+    "english": "effusive",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style",
+    "acceptedEn": [
+      "gushing"
+    ]
+  },
+  {
+    "spanish": "circunspecto",
+    "english": "circumspect",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style",
+    "acceptedEn": [
+      "cautious"
+    ]
+  },
+  {
+    "spanish": "proceloso",
+    "english": "stormy",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "literary",
+    "acceptedEn": [
+      "tempestuous"
+    ]
+  },
+  {
+    "spanish": "fulgurante",
+    "english": "dazzling",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "literary",
+    "acceptedEn": [
+      "blazing"
+    ]
+  },
+  {
+    "spanish": "aluvión",
+    "english": "flood",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "deluge"
+    ]
+  },
+  {
+    "spanish": "sinuoso",
+    "english": "winding",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "description",
+    "acceptedEn": [
+      "tortuous"
+    ]
+  },
+  {
+    "spanish": "vetusto",
+    "english": "ancient",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "description",
+    "acceptedEn": [
+      "archaic"
+    ]
+  },
+  {
+    "spanish": "pueril",
+    "english": "childish",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "immature"
+    ]
+  },
+  {
+    "spanish": "ruin",
+    "english": "despicable",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "vile"
+    ]
+  },
+  {
+    "spanish": "sibilino",
+    "english": "sly",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "insidious"
+    ]
+  },
+  {
+    "spanish": "fáustico",
+    "english": "ominous",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "tone",
+    "acceptedEn": [
+      "menacing"
+    ]
+  },
+  {
+    "spanish": "dilapidado",
+    "english": "dilapidated",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "state",
+    "acceptedEn": [
+      "run down"
+    ]
+  },
+  {
+    "spanish": "deslavazado",
+    "english": "incoherent",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "muddled"
+    ]
+  },
+  {
+    "spanish": "frondoso",
+    "english": "leafy",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "nature",
+    "acceptedEn": [
+      "lush"
+    ]
+  },
+  {
+    "spanish": "petreo",
+    "english": "stony",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "texture",
+    "acceptedEn": [
+      "rocky"
+    ]
+  },
+  {
+    "spanish": "cerúleo",
+    "english": "azure",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "color",
+    "acceptedEn": [
+      "sky blue"
+    ]
+  },
+  {
+    "spanish": "rubicundo",
+    "english": "ruddy",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "color",
+    "acceptedEn": [
+      "florid"
+    ]
+  },
+  {
+    "spanish": "verbosidad",
+    "english": "wordiness",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "style",
+    "acceptedEn": [
+      "verbosity"
+    ]
+  },
+  {
+    "spanish": "dislate",
+    "english": "nonsense",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "balderdash"
+    ]
+  },
+  {
+    "spanish": "argucia",
+    "english": "sophistry",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "trickery"
+    ]
+  },
+  {
+    "spanish": "retruque",
+    "english": "retort",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "comeback"
+    ]
+  },
+  {
+    "spanish": "disquisición",
+    "english": "disquisition",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "treatise"
+    ]
+  },
+  {
+    "spanish": "matiz",
+    "english": "nuance",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech"
+  },
+  {
+    "spanish": "disparate",
+    "english": "blunder",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "howler"
+    ]
+  },
+  {
+    "spanish": "vicisitud",
+    "english": "vicissitude",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "life",
+    "acceptedEn": [
+      "hardship"
+    ]
+  },
+  {
+    "spanish": "desdén",
+    "english": "disdain",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "emotion",
+    "acceptedEn": [
+      "scorn"
+    ]
+  },
+  {
+    "spanish": "despecho",
+    "english": "spite",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "emotion",
+    "acceptedEn": [
+      "rancor"
+    ]
+  },
+  {
+    "spanish": "desaliento",
+    "english": "discouragement",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "emotion",
+    "acceptedEn": [
+      "despondency"
+    ]
+  },
+  {
+    "spanish": "desasosiego",
+    "english": "unease",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "emotion",
+    "acceptedEn": [
+      "restlessness"
+    ]
+  },
+  {
+    "spanish": "desvarío",
+    "english": "delirium",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "mind",
+    "acceptedEn": [
+      "raving"
+    ]
+  },
+  {
+    "spanish": "desgana",
+    "english": "listlessness",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "emotion",
+    "acceptedEn": [
+      "apathy"
+    ]
+  },
+  {
+    "spanish": "desenfado",
+    "english": "ease",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "manner",
+    "acceptedEn": [
+      "poise"
+    ]
+  },
+  {
+    "spanish": "desenlace",
+    "english": "outcome",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "narrative",
+    "acceptedEn": [
+      "denouement"
+    ]
+  },
+  {
+    "spanish": "final",
+    "english": "ending",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "narrative",
+    "acceptedEn": [
+      "finish"
+    ]
+  },
+  {
+    "spanish": "entramado",
+    "english": "framework",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "structure",
+    "acceptedEn": [
+      "web"
+    ]
+  },
+  {
+    "spanish": "entelequia",
+    "english": "chimera",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "mirage"
+    ]
+  },
+  {
+    "spanish": "ficción",
+    "english": "fiction",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "made up"
+    ]
+  },
+  {
+    "spanish": "epifanía",
+    "english": "epiphany",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "revelation"
+    ]
+  },
+  {
+    "spanish": "sinrazón",
+    "english": "injustice",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "abstract",
+    "acceptedEn": [
+      "wrong"
+    ]
+  },
+  {
+    "spanish": "desidia",
+    "english": "apathy",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "character",
+    "acceptedEn": [
+      "sloth"
+    ]
+  },
+  {
+    "spanish": "ociosidad",
+    "english": "idleness",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "character",
+    "acceptedEn": [
+      "leisure"
+    ]
+  },
+  {
+    "spanish": "oprobio",
+    "english": "opprobrium",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "disgrace"
+    ]
+  },
+  {
+    "spanish": "vituperio",
+    "english": "vituperation",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "abuse"
+    ]
+  },
+  {
+    "spanish": "jerigonza",
+    "english": "jargon",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "cant"
+    ]
+  },
+  {
+    "spanish": "argot",
+    "english": "slang",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "jargon"
+    ]
+  },
+  {
+    "spanish": "muletilla",
+    "english": "catchphrase",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "filler word"
+    ]
+  },
+  {
+    "spanish": "periplo",
+    "english": "journey",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "travel",
+    "acceptedEn": [
+      "voyage"
+    ]
+  },
+  {
+    "spanish": "bozal",
+    "english": "unskilled",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "work",
+    "acceptedEn": [
+      "greenhorn"
+    ]
+  },
+  {
+    "spanish": "denuedo",
+    "english": "boldness",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "character",
+    "acceptedEn": [
+      "pluck"
+    ]
+  },
+  {
+    "spanish": "denuesto",
+    "english": "insult",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "speech",
+    "acceptedEn": [
+      "slur"
+    ]
+  },
+  {
+    "spanish": "desatino",
+    "english": "folly",
+    "difficulty": "expert",
+    "type": "word",
+    "category": "judgment",
+    "acceptedEn": [
+      "folly act"
+    ]
+  },
+  {
+    "spanish": "poner la mano",
+    "english": "guarantee",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "business",
+    "acceptedEn": [
+      "vouch for"
+    ],
+    "note": "Put your hand in the fire for it."
+  },
+  {
+    "spanish": "romper el hielo",
+    "english": "break ice",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "social",
+    "acceptedEn": [
+      "warm up"
+    ],
+    "note": "Start awkward conversation."
+  },
+  {
+    "spanish": "tocar fibra",
+    "english": "strike chord",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "emotion",
+    "acceptedEn": [
+      "hit home"
+    ],
+    "note": "Touch a sensitive fiber."
+  },
+  {
+    "spanish": "andar con rodeos",
+    "english": "beat around bush",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "speech",
+    "acceptedEn": [
+      "evade point"
+    ]
+  },
+  {
+    "spanish": "no tener pelos",
+    "english": "speak frankly",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "speech",
+    "acceptedEn": [
+      "tell straight"
+    ],
+    "note": "No hairs on the tongue."
+  },
+  {
+    "spanish": "sacar tajada",
+    "english": "cash in",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "money",
+    "acceptedEn": [
+      "profit from"
+    ]
+  },
+  {
+    "spanish": "tirar de hemeroteca",
+    "english": "dig up archives",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "media",
+    "acceptedEn": [
+      "look back"
+    ],
+    "note": "Pull from the newspaper library."
+  },
+  {
+    "spanish": "hacer oídos sordos",
+    "english": "turn deaf ear",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "behavior",
+    "acceptedEn": [
+      "ignore it"
+    ]
+  },
+  {
+    "spanish": "pasar factura",
+    "english": "take toll",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "consequences",
+    "acceptedEn": [
+      "cost dearly"
+    ]
+  },
+  {
+    "spanish": "cargar las tintas",
+    "english": "lay thick",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "rhetoric",
+    "acceptedEn": [
+      "emphasize lots"
+    ],
+    "note": "Load the inks — dramatize."
+  },
+  {
+    "spanish": "echar anclas",
+    "english": "settle down",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "life",
+    "acceptedEn": [
+      "put roots"
+    ]
+  },
+  {
+    "spanish": "levantar acta",
+    "english": "write record",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "legal",
+    "acceptedEn": [
+      "take minutes"
+    ]
+  },
+  {
+    "spanish": "poner sobre aviso",
+    "english": "put on notice",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "warning",
+    "acceptedEn": [
+      "warn clearly"
+    ]
+  },
+  {
+    "spanish": "salir rana",
+    "english": "turn out badly",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "outcomes",
+    "acceptedEn": [
+      "go wrong"
+    ],
+    "note": "Come out a frog — bad surprise."
+  },
+  {
+    "spanish": "ser harina",
+    "english": "be gullible",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "character",
+    "acceptedEn": [
+      "easy fool"
+    ],
+    "note": "Be flour — moldable."
+  },
+  {
+    "spanish": "tener mala leche",
+    "english": "be mean",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "character",
+    "acceptedEn": [
+      "bad temper"
+    ],
+    "note": "Bad milk — nasty mood."
+  },
+  {
+    "spanish": "no tener abuela",
+    "english": "brag endlessly",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "speech",
+    "acceptedEn": [
+      "show off"
+    ],
+    "note": "No grandmother to outdo you."
+  },
+  {
+    "spanish": "ir a la saga",
+    "english": "lag behind",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "progress",
+    "acceptedEn": [
+      "trail behind"
+    ],
+    "note": "Go in the rear guard."
+  },
+  {
+    "spanish": "ir a la yugular",
+    "english": "go jugular",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "debate",
+    "acceptedEn": [
+      "attack hard"
+    ],
+    "note": "Straight for the jugular."
+  },
+  {
+    "spanish": "poner pies",
+    "english": "run away",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "escape",
+    "acceptedEn": [
+      "take off"
+    ],
+    "note": "Put feet in dust — flee."
+  },
+  {
+    "spanish": "sacar pecho",
+    "english": "puff chest",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "pride",
+    "acceptedEn": [
+      "show pride"
+    ],
+    "note": "Stick out chest proudly."
+  },
+  {
+    "spanish": "tirar la casa",
+    "english": "splurge hugely",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "money",
+    "acceptedEn": [
+      "go wild"
+    ],
+    "note": "Throw house out window."
+  },
+  {
+    "spanish": "no dejar titere",
+    "english": "leave nothing",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "thoroughness",
+    "acceptedEn": [
+      "no stone"
+    ],
+    "note": "Not leave puppet with head."
+  },
+  {
+    "spanish": "hablar hasta por",
+    "english": "talk nonstop",
+    "difficulty": "expert",
+    "type": "phrase",
+    "category": "speech",
+    "acceptedEn": [
+      "not shut up"
+    ],
+    "note": "Talk even through elbows."
+  },
+  {
+    "spanish": "dar carpetazo",
+    "english": "shelve it",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "work",
+    "acceptedEn": [
+      "kill project"
+    ],
+    "note": "Give it the rug sweep — end discussion."
+  },
+  {
+    "spanish": "montar un pollo",
+    "english": "make scene",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "drama",
+    "acceptedEn": [
+      "throw fit"
+    ],
+    "note": "Mount a chicken — big fuss."
+  },
+  {
+    "spanish": "estar en babia",
+    "english": "zone out",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "mind",
+    "acceptedEn": [
+      "not listening"
+    ],
+    "note": "Mentally in Babia."
+  },
+  {
+    "spanish": "comerse el tarro",
+    "english": "obsess",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "mind",
+    "acceptedEn": [
+      "overthink"
+    ],
+    "note": "Eat the jar — spiral mentally."
+  },
+  {
+    "spanish": "poner de relieve",
+    "english": "highlight",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "rhetoric",
+    "acceptedEn": [
+      "stress point"
+    ]
+  },
+  {
+    "spanish": "salir por peteneras",
+    "english": "duck out",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "behavior",
+    "acceptedEn": [
+      "slip away"
+    ],
+    "note": "Exit through Peteneras side street."
+  },
+  {
+    "spanish": "hacer la pelota",
+    "english": "butter up",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "social",
+    "acceptedEn": [
+      "flatter lots"
+    ],
+    "note": "Make the ball — flatter."
+  },
+  {
+    "spanish": "tener mano izquierda",
+    "english": "have tact",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "social",
+    "acceptedEn": [
+      "handle deftly"
+    ],
+    "note": "Left hand — diplomatic touch."
+  },
+  {
+    "spanish": "echar leña",
+    "english": "add fuel",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "conflict",
+    "acceptedEn": [
+      "stir trouble"
+    ],
+    "note": "Throw wood on fire."
+  },
+  {
+    "spanish": "pasarse tres",
+    "english": "go too far",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "behavior",
+    "acceptedEn": [
+      "cross line"
+    ],
+    "note": "Pass three villages — overdo it."
+  },
+  {
+    "spanish": "tener mucha cara",
+    "english": "have nerve",
+    "difficulty": "expert",
+    "type": "collocation",
+    "category": "judgment",
+    "acceptedEn": [
+      "cheeky"
+    ],
+    "note": "Lots of face — brazen."
+  },
+  {
+    "spanish": "poner el dedo",
+    "english": "point blame",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "finger culprit"
+    ],
+    "note": "Put finger on the sore."
+  },
+  {
+    "spanish": "dar largas",
+    "english": "stall for time",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "drag feet"
+    ],
+    "note": "Give long measures — delay."
+  },
+  {
+    "spanish": "estar en ascuas",
+    "english": "on tenterhooks",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "on edge"
+    ],
+    "note": "On hot coals — anxious wait."
+  },
+  {
+    "spanish": "ser uña y carne",
+    "english": "thick friends",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "inseparable"
+    ],
+    "note": "Nail and flesh."
+  },
+  {
+    "spanish": "estar hecho una furia",
+    "english": "fuming mad",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "see red"
+    ],
+    "note": "Made into a fury."
+  },
+  {
+    "spanish": "ponerse las pilas",
+    "english": "shape up",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "get serious"
+    ],
+    "note": "Put batteries in — focus."
+  },
+  {
+    "spanish": "tirar cohetes",
+    "english": "celebrate wildly",
+    "difficulty": "expert",
+    "type": "idiom",
+    "category": "idioms",
+    "acceptedEn": [
+      "go wild"
+    ],
+    "note": "Shoot fireworks — euphoria."
+  }
+]

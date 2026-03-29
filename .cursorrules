@@ -1,0 +1,9 @@
+# Duende — Cursor AI rules
+
+- Always use TypeScript with strict types; avoid `any`; prefer explicit props and return types for public APIs.
+- Style exclusively with Tailwind CSS: mobile-first, clean spacing, modern hierarchy; no ad-hoc CSS files unless integrating third-party globals.
+- Use shadcn/ui components from `@/components/ui` whenever they fit; extend variants with `cva` / `cn` instead of one-off styled elements.
+- Add tasteful Framer Motion animations and micro-interactions (staggered reveals, hover/tap feedback); keep motion reduced for `prefers-reduced-motion` when adding new patterns.
+- Dark theme by default with vibrant Spanish-inspired accents: deep crimson `#9F1239`, gold `#FBBF24`, sunset orange `#FB923C`, and a rich dark background; aim for premium, playful, immersive “digital fiesta” energy.
+- Structure user-visible strings for future Spanish/English switching (message objects, namespaces, or i18n keys) — avoid hardcoding duplicate copy across components without a single source.
+- Write clean, commented, production-ready code: meaningful names, small focused components, and brief comments where intent is non-obvious.
