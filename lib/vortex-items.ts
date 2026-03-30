@@ -285,7 +285,7 @@ for (const task of TASKS) {
 
 // Curated idioms (hard/expert): keep them short in English + include a quick usage note.
 const EXTRA_IDIOMS: Array<{ es: string; en: string; diff: PalabraDifficultyLevel; note: string; category?: string; acceptedEn?: string[] }> = [
-  { es: "estar entre la espada y la pared", en: "in a bind", diff: "hard", note: "When you have no easy option." , category: "emotions"},
+  { es: "entre la espada y la pared", en: "in a bind", diff: "hard", note: "Same idea as estar entre la espada y la pared — no easy option.", category: "emotions" },
   { es: "echar leña al fuego", en: "add fuel", diff: "hard", note: "To make a conflict worse." , category: "social"},
   { es: "tomar el pelo", en: "pull your leg", diff: "hard", note: "To tease someone." , category: "social"},
   { es: "irse por las ramas", en: "ramble on", diff: "hard", note: "To talk too much without getting to the point." , category: "speech"},

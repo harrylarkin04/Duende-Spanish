@@ -441,7 +441,7 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
     if (phase !== "playing" || !current) return;
     const t = window.setTimeout(() => inputRef.current?.focus(), 60);
     return () => window.clearTimeout(t);
-  }, [phase, index, current?.id]);
+  }, [phase, index, current]);
 
   const leaderboard = getLocalLeaderboard().slice(0, 5);
   const bestSprint = getBestForMode("sprint");

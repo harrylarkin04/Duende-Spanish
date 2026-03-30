@@ -1098,7 +1098,7 @@ export function PalabraMultiplayerGame() {
         if (nextScores[m.user_id] === undefined) nextScores[m.user_id] = 0;
       }
 
-      let nextHp: Record<string, number> = { ...monsterHpRef.current };
+      const nextHp: Record<string, number> = { ...monsterHpRef.current };
       for (const m of memberList) {
         if (nextHp[m.user_id] == null) nextHp[m.user_id] = MP_MONSTER_MAX_HP;
       }
