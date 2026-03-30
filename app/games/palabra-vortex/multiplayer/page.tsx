@@ -3,6 +3,8 @@ import { Suspense } from "react";
 
 import { PalabraMultiplayerGame } from "@/components/games/palabra-vortex/palabra-multiplayer-game";
 
+import { MultiplayerSuspenseFallback } from "./multiplayer-suspense-fallback";
+
 export const metadata: Metadata = {
   title: "Palabra Vortex Multijugador — Duende",
   description:
@@ -11,13 +13,7 @@ export const metadata: Metadata = {
 
 export default function PalabraMultiplayerPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-[40vh] items-center justify-center text-sm text-muted-foreground">
-          Cargando multijugador…
-        </div>
-      }
-    >
+    <Suspense fallback={<MultiplayerSuspenseFallback />}>
       <PalabraMultiplayerGame />
     </Suspense>
   );

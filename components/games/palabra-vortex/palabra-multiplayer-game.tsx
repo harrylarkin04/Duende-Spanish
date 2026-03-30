@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowLeft,
   Copy,
+  Gamepad2,
   Heart,
   Sparkles,
   Trophy,
@@ -19,6 +20,10 @@ import * as React from "react";
 import type { PalabraVocabResult } from "@/app/(protected)/actions/record-game";
 import { recordPalabraRun } from "@/app/(protected)/actions/record-game";
 import { FieryBurst } from "@/components/games/palabra-vortex/fiery-burst";
+import {
+  MultiplayerConnectingSpinner,
+  MultiplayerErrorPanel,
+} from "@/components/games/palabra-vortex/multiplayer-page-ui";
 import { VictoryConfetti } from "@/components/games/palabra-vortex/victory-confetti";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -147,6 +152,11 @@ export function PalabraMultiplayerGame() {
   const membersRef = React.useRef<MemberRow[]>([]);
   const joinedFromUrlRef = React.useRef(false);
 
+  const [boot, setBoot] = React.useState<"checking" | "ready" | "failed">("checking");
+  const [bootFailTitle, setBootFailTitle] = React.useState("Can’t start multiplayer");
+  const [bootFailMessage, setBootFailMessage] = React.useState("");
+  const [bootFailTechnical, setBootFailTechnical] = React.useState<string | null>(null);
+
   React.useEffect(() => {
     userIdRef.current = userId;
   }, [userId]);
@@ -172,22 +182,108 @@ export function PalabraMultiplayerGame() {
   }, [isHost]);
 
   React.useEffect(() => {
-    if (!supabase) return;
-    void supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-  }, [supabase]);
+    console.log("[duende-mp] boot: checking Supabase + auth", { roomFromUrl });
+    setBoot("checking");
+    setBootFailTechnical(null);
+
+    if (!supabase) {
+      const tech =
+        "createClient() returned null. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local (dev) or Vercel → Project → Settings → Environment Variables (production).";
+      console.error("[duende-mp] boot failed:", tech);
+      setBootFailTitle("Supabase is not configured");
+      setBootFailMessage(
+        "The app cannot reach your database. Add your Supabase URL and anon key, then reload this page.",
+      );
+      setBootFailTechnical(tech);
+      setBoot("failed");
+      return;
+    }
+
+    void supabase.auth.getUser().then(({ data, error }) => {
+      if (error) {
+        const tech = `${error.name}: ${error.message}`;
+        console.error("[duende-mp] auth.getUser error:", error);
+        setBootFailTitle("Auth check failed");
+        setBootFailMessage("Supabase could not verify your session. Try signing out and back in.");
+        setBootFailTechnical(
+          `${tech}${error.cause != null ? `\nCause: ${String(error.cause)}` : ""}\nStack: ${error.stack ?? "(none)"}`,
+        );
+        setBoot("failed");
+        return;
+      }
+      if (!data.user) {
+        const tech = "getUser() returned no user. Middleware should redirect anonymous users to /login.";
+        console.error("[duende-mp] boot failed:", tech);
+        setBootFailTitle("Not signed in");
+        setBootFailMessage("You need an account to play multiplayer. Open the login page and try again.");
+        setBootFailTechnical(tech);
+        setBoot("failed");
+        return;
+      }
+
+      console.log("[duende-mp] boot: ready", { userId: data.user.id, roomFromUrl });
+      setUserId(data.user.id);
+      setBoot("ready");
+    });
+  }, [supabase, roomFromUrl]);
 
   React.useEffect(() => {
     if (!countryCode) setCountryCode(guessBrowserCountry());
   }, [countryCode]);
 
   const refreshState = React.useCallback(
-    async (code: string) => {
-      if (!supabase) return;
+    async (code: string, mode: "strict" | "soft" = "strict") => {
+      if (!supabase) return false;
       const [rRes, mRes] = await Promise.all([
         supabase.from("palabra_multiplayer_rooms").select("*").eq("room_code", code).maybeSingle(),
         supabase.from("palabra_multiplayer_members").select("*").eq("room_code", code),
       ]);
-      if (rRes.data) setRoom(rRes.data as RoomRow);
+
+      const hintMigrations =
+        " If this is your project, run the SQL in supabase/migrations/006_palabra_multiplayer.sql (and earlier migrations) in the Supabase SQL editor.";
+
+      if (rRes.error) {
+        if (mode === "strict") {
+          const msg =
+            rRes.error.code === "42P01" || /relation.*does not exist/i.test(rRes.error.message)
+              ? `Multiplayer database tables are missing.${hintMigrations}`
+              : rRes.error.message;
+          console.error("[duende-mp] refreshState rooms error:", rRes.error.code, rRes.error.message, {
+            code,
+            mode,
+          });
+          setErr(msg);
+          setRoom(null);
+        }
+        return false;
+      }
+      if (mRes.error) {
+        if (mode === "strict") {
+          const msg =
+            mRes.error.code === "42P01" || /relation.*does not exist/i.test(mRes.error.message)
+              ? `Multiplayer database tables are missing.${hintMigrations}`
+              : mRes.error.message;
+          console.error("[duende-mp] refreshState members error:", mRes.error.code, mRes.error.message, {
+            code,
+            mode,
+          });
+          setErr(msg);
+          setRoom(null);
+        }
+        return false;
+      }
+
+      if (!rRes.data) {
+        if (mode === "strict") {
+          const msg = `Could not load room “${code}”. It may not exist, expired, or your account can’t read it (check database migrations and RLS).${hintMigrations}`;
+          console.error("[duende-mp] refreshState: no room row", { code });
+          setErr(msg);
+          setRoom(null);
+        }
+        return false;
+      }
+
+      setRoom(rRes.data as RoomRow);
       const mems = (mRes.data ?? []) as MemberRow[];
       setMembers(mems);
       const ids = mems.map((m) => m.user_id);
@@ -198,6 +294,7 @@ export function PalabraMultiplayerGame() {
           .in("user_id", ids);
         setProfiles(new Map((profs ?? []).map((p) => [p.user_id, p as ProfileMini])));
       } else setProfiles(new Map());
+      return true;
     },
     [supabase],
   );
@@ -232,6 +329,7 @@ export function PalabraMultiplayerGame() {
       setConn("connecting");
       await teardownChannel();
       const topic = mpChannelName(code);
+      console.log("[duende-mp] attachChannel subscribe", { roomCode: code, topic });
       const channel = supabase
         .channel(topic, { config: { broadcast: { self: true } } })
         .on("broadcast", { event: MP_BROADCAST_EVENT }, ({ payload }) => {
@@ -309,7 +407,7 @@ export function PalabraMultiplayerGame() {
             setFastestMs(null);
             setIdiomHits(0);
             setVocabResults([]);
-            void refreshState(roomCodeRef.current);
+            void refreshState(roomCodeRef.current, "soft");
             return;
           }
         })
@@ -323,7 +421,7 @@ export function PalabraMultiplayerGame() {
         "postgres_changes",
         { event: "*", schema: "public", table: "palabra_multiplayer_members", filter: `room_code=eq.${code}` },
         () => {
-          void refreshState(code);
+          void refreshState(code, "soft");
         },
       );
 
@@ -362,6 +460,7 @@ export function PalabraMultiplayerGame() {
             online_at: Date.now(),
           });
         } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+          console.error("[duende-mp] Realtime channel status:", status, { topic });
           setConn("reconnecting");
         }
       });
@@ -378,6 +477,7 @@ export function PalabraMultiplayerGame() {
   }, [teardownChannel]);
 
   React.useEffect(() => {
+    if (boot !== "ready") return;
     if (!roomFromUrl || !userId || !supabase) return;
     if (screen !== "entry") return;
     if (joinedFromUrlRef.current) return;
@@ -399,7 +499,12 @@ export function PalabraMultiplayerGame() {
         });
         if (error) throw error;
         setRoomCode(roomFromUrl);
-        await refreshState(roomFromUrl);
+        const ok = await refreshState(roomFromUrl);
+        if (!ok) {
+          joinedFromUrlRef.current = false;
+          setScreen("entry");
+          return;
+        }
         await attachChannel(roomFromUrl);
         setScreen("lobby");
       } catch (e) {
@@ -409,10 +514,11 @@ export function PalabraMultiplayerGame() {
         setBusy(false);
       }
     })();
-  }, [roomFromUrl, userId, supabase, screen, countryCode, refreshState, attachChannel]);
+  }, [boot, roomFromUrl, userId, supabase, screen, countryCode, refreshState, attachChannel]);
 
   const createRoom = async () => {
     if (!supabase || !userId) return;
+    console.log("[duende-mp] createRoom clicked", { difficultyPick });
     setBusy(true);
     setErr(null);
     try {
@@ -428,10 +534,15 @@ export function PalabraMultiplayerGame() {
         .from("palabra_multiplayer_rooms")
         .update({ difficulty: difficultyPick })
         .eq("room_code", code);
-      await refreshState(code);
+      const ok = await refreshState(code);
+      if (!ok) {
+        setScreen("entry");
+        return;
+      }
       await attachChannel(code);
       setScreen("lobby");
     } catch (e) {
+      console.error("[duende-mp] createRoom failed:", e);
       setErr(e instanceof Error ? e.message : "Create failed");
     } finally {
       setBusy(false);
@@ -444,6 +555,7 @@ export function PalabraMultiplayerGame() {
       setErr("Enter a 6-character room code.");
       return;
     }
+    console.log("[duende-mp] joinRoomManual", { code });
     setBusy(true);
     setErr(null);
     try {
@@ -459,10 +571,15 @@ export function PalabraMultiplayerGame() {
       });
       if (error) throw error;
       setRoomCode(code);
-      await refreshState(code);
+      const ok = await refreshState(code);
+      if (!ok) {
+        setScreen("entry");
+        return;
+      }
       await attachChannel(code);
       setScreen("lobby");
     } catch (e) {
+      console.error("[duende-mp] joinRoomManual failed:", e);
       setErr(e instanceof Error ? e.message : "Join failed");
     } finally {
       setBusy(false);
@@ -661,24 +778,44 @@ export function PalabraMultiplayerGame() {
 
   const current = deck[roundIndex];
 
-  if (!supabase) {
+  if (boot === "checking") {
+    return <MultiplayerConnectingSpinner context="boot: Supabase + auth" />;
+  }
+
+  if (boot === "failed") {
     return (
-      <div className="mx-auto max-w-lg px-4 py-16 text-center text-sm text-muted-foreground">
-        Supabase is not configured. Add keys to <code className="text-xs">.env.local</code> to play online.
-      </div>
+      <MultiplayerErrorPanel
+        title={bootFailTitle}
+        message={bootFailMessage}
+        technical={bootFailTechnical}
+      />
     );
+  }
+
+  if (!supabase) {
+    console.error("[duende-mp] invariant: boot ready but supabase is null");
+    return null;
   }
 
   return (
     <div className="relative mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <Link
-          href="/games/palabra-vortex"
-          className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-2 text-muted-foreground")}
-        >
-          <ArrowLeft className="size-4" />
-          Solo Vortex
-        </Link>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href="/games"
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-2")}
+          >
+            <Gamepad2 className="size-4" />
+            Back to Games
+          </Link>
+          <Link
+            href="/games/palabra-vortex"
+            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-2 text-muted-foreground")}
+          >
+            <ArrowLeft className="size-4" />
+            Solo Vortex
+          </Link>
+        </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           {conn === "ok" ? <Wifi className="size-4 text-emerald-400" /> : null}
           {conn === "reconnecting" ? <WifiOff className="size-4 text-amber-400" /> : null}
@@ -700,75 +837,189 @@ export function PalabraMultiplayerGame() {
         ) : null}
       </AnimatePresence>
 
-      {screen === "entry" ? (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <Card className="border-fiesta-gold/20 bg-card/70">
+      {err && screen !== "entry" ? (
+        <div
+          className="mb-6 rounded-2xl border border-fiesta-orange/45 bg-fiesta-orange/10 p-4 shadow-sm"
+          role="alert"
+        >
+          <p className="text-sm font-semibold text-foreground">Multiplayer error</p>
+          <pre className="mt-2 max-h-40 overflow-auto whitespace-pre-wrap break-words text-xs text-muted-foreground">
+            {err}
+          </pre>
+          <Button type="button" variant="outline" size="sm" className="mt-3" onClick={() => setErr(null)}>
+            Dismiss
+          </Button>
+        </div>
+      ) : null}
+
+      {screen === "entry" && roomFromUrl && !err ? (
+        <MultiplayerConnectingSpinner
+          context="join-from-invite-link"
+          title="Joining your room…"
+          description={`Invite code ${roomFromUrl}. Tip: press F12 → Console and filter “duende-mp” if this takes too long.`}
+        />
+      ) : null}
+
+      {screen === "entry" && roomFromUrl && err ? (
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-lg">
+          <Card className="border-fiesta-orange/35 bg-card/80">
             <CardHeader>
-              <div className="inline-flex items-center gap-2 rounded-full border border-fiesta-gold/25 bg-fiesta-crimson/15 px-3 py-1 text-xs font-medium text-fiesta-gold">
-                <Users className="size-3.5" />
-                Palabra Vortex — Multijugador
-              </div>
-              <CardTitle className="font-[family-name:var(--font-heading)] text-2xl">
-                <span className="bg-linear-to-r from-fiesta-gold via-fiesta-orange to-fiesta-crimson bg-clip-text text-transparent">
-                  Misma palabra, dos corazones 💃
-                </span>
-              </CardTitle>
-              <CardDescription>
-                Sala con código de 6 letras, mismo mazo en ambos dispositivos, y rachas con sabor a competición cariñosa.
-              </CardDescription>
+              <CardTitle className="text-lg">Couldn’t join from your link</CardTitle>
+              <CardDescription>The invite code is in the address bar; you can retry or type it below.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Tu bandera (opcional)
-                </p>
-                <input
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value.toUpperCase().slice(0, 2))}
-                  placeholder="e.g. GB, IT"
-                  className="w-full max-w-xs rounded-xl border border-input bg-background px-3 py-2 text-sm uppercase"
-                />
+            <CardContent className="space-y-4">
+              <pre className="max-h-48 overflow-auto rounded-lg border border-border bg-muted/40 p-3 text-xs whitespace-pre-wrap break-words text-foreground">
+                {err}
+              </pre>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    console.log("[duende-mp] retry join from URL after error");
+                    joinedFromUrlRef.current = false;
+                    setErr(null);
+                    window.location.reload();
+                  }}
+                >
+                  Retry with same link
+                </Button>
+                <Button type="button" variant="outline" onClick={() => setErr(null)}>
+                  Dismiss message
+                </Button>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-3 rounded-xl border border-fiesta-gold/15 bg-muted/20 p-4">
-                  <h3 className="font-semibold">Crear sala</h3>
-                  <select
-                    value={difficultyPick}
-                    onChange={(e) => setDifficultyPick(e.target.value as PalabraDifficultyLevel)}
-                    className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
-                  >
-                    <option value="easy">Fácil (A1–A2)</option>
-                    <option value="medium">Medio (B1)</option>
-                    <option value="hard">Difícil (B2)</option>
-                    <option value="expert">Experto (C1–C2)</option>
-                  </select>
-                  <Button className="w-full gap-2" onClick={() => void createRoom()} disabled={busy}>
-                    <Sparkles className="size-4" />
-                    Create room
-                  </Button>
-                </div>
-                <div className="space-y-3 rounded-xl border border-fiesta-gold/15 bg-muted/20 p-4">
-                  <h3 className="font-semibold">Unirse</h3>
-                  <input
-                    value={joinInput}
-                    onChange={(e) => setJoinInput(e.target.value.toUpperCase())}
-                    placeholder="ROOM CODE"
-                    maxLength={8}
-                    className="w-full rounded-xl border border-input bg-background px-3 py-2 font-mono text-lg tracking-widest"
-                  />
-                  <Button variant="secondary" className="w-full" onClick={() => void joinRoomManual()} disabled={busy}>
-                    Join room
-                  </Button>
-                </div>
-              </div>
-              {err ? (
-                <p className="text-sm text-fiesta-orange" role="alert">
-                  {err}
-                </p>
-              ) : null}
             </CardContent>
           </Card>
         </motion.div>
+      ) : null}
+
+      {screen === "entry" && !roomFromUrl ? (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mx-auto flex max-w-md flex-col items-center gap-8 py-6 text-center"
+        >
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-fiesta-gold/25 bg-fiesta-crimson/15 px-3 py-1 text-xs font-medium text-fiesta-gold">
+              <Users className="size-3.5" />
+              Palabra Vortex — 2 players
+            </div>
+            <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              <span className="bg-linear-to-r from-fiesta-gold via-fiesta-orange to-fiesta-crimson bg-clip-text text-transparent">
+                Play together
+              </span>
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Same Spanish prompt on both phones — English answers stay short (1–3 words). New rooms get a 6-character
+              code (like <span className="font-mono text-foreground">XN4RT2</span>).
+            </p>
+          </div>
+
+          <div className="w-full space-y-3">
+            <label className="block text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Difficulty for this room
+            </label>
+            <select
+              value={difficultyPick}
+              onChange={(e) => setDifficultyPick(e.target.value as PalabraDifficultyLevel)}
+              className="w-full rounded-xl border border-input bg-background px-3 py-3 text-sm"
+            >
+              <option value="easy">Fácil (A1–A2)</option>
+              <option value="medium">Medio (B1)</option>
+              <option value="hard">Difícil (B2)</option>
+              <option value="expert">Experto (C1–C2)</option>
+            </select>
+            <Button
+              type="button"
+              size="lg"
+              className="h-14 w-full gap-2 text-base font-semibold shadow-lg shadow-fiesta-gold/10"
+              onClick={() => void createRoom()}
+              disabled={busy}
+            >
+              <Sparkles className="size-5" />
+              Create New Room
+            </Button>
+          </div>
+
+          <div className="relative w-full">
+            <div className="absolute inset-0 flex items-center" aria-hidden>
+              <span className="w-full border-t border-border" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase tracking-wide">
+              <span className="bg-background px-3 text-muted-foreground">or join</span>
+            </div>
+          </div>
+
+          <div className="w-full space-y-3">
+            <label className="block text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Room code (6 characters)
+            </label>
+            <input
+              value={joinInput}
+              onChange={(e) => setJoinInput(e.target.value.toUpperCase())}
+              placeholder="e.g. SPAIN7"
+              maxLength={8}
+              className="w-full rounded-xl border-2 border-fiesta-gold/25 bg-background px-4 py-4 text-center font-mono text-xl tracking-[0.25em] placeholder:tracking-normal"
+              autoComplete="off"
+            />
+            <Button
+              type="button"
+              size="lg"
+              variant="secondary"
+              className="h-14 w-full text-base font-semibold"
+              onClick={() => void joinRoomManual()}
+              disabled={busy}
+            >
+              Join Room
+            </Button>
+          </div>
+
+          <div className="w-full rounded-xl border border-border/80 bg-muted/20 p-4 text-left">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Country flag (optional)</p>
+            <input
+              value={countryCode}
+              onChange={(e) => setCountryCode(e.target.value.toUpperCase().slice(0, 2))}
+              placeholder="GB, IT, …"
+              className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm uppercase"
+            />
+          </div>
+
+          {err ? (
+            <div
+              className="w-full rounded-xl border border-fiesta-orange/40 bg-fiesta-orange/10 p-4 text-left"
+              role="alert"
+            >
+              <p className="text-sm font-semibold text-foreground">Something went wrong</p>
+              <pre className="mt-2 max-h-36 overflow-auto whitespace-pre-wrap break-words text-xs text-muted-foreground">
+                {err}
+              </pre>
+            </div>
+          ) : null}
+        </motion.div>
+      ) : null}
+
+      {screen === "lobby" && !room ? (
+        <Card className="border-fiesta-orange/30 bg-card/70">
+          <CardHeader>
+            <CardTitle className="text-lg">Loading room…</CardTitle>
+            <CardDescription>
+              If this stays empty for a long time, your Supabase project may be missing the multiplayer tables (migration
+              006) or the room code is wrong.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {err ? (
+              <p className="text-sm text-fiesta-orange" role="alert">
+                {err}
+              </p>
+            ) : (
+              <p className="text-sm text-muted-foreground">Fetching room and players…</p>
+            )}
+            <Button type="button" variant="secondary" onClick={() => setScreen("entry")}>
+              Back to setup
+            </Button>
+          </CardContent>
+        </Card>
       ) : null}
 
       {screen === "lobby" && room ? (
@@ -875,6 +1126,20 @@ export function PalabraMultiplayerGame() {
             </CardContent>
           </Card>
         </motion.div>
+      ) : null}
+
+      {screen === "playing" && !current ? (
+        <Card className="border-fiesta-gold/25 bg-card/80">
+          <CardHeader>
+            <CardTitle className="text-lg">Syncing round…</CardTitle>
+            <CardDescription>Waiting for the deck and timer from the host. Check your connection.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button type="button" variant="outline" onClick={() => void refreshState(roomCode)}>
+              Retry refresh
+            </Button>
+          </CardContent>
+        </Card>
       ) : null}
 
       {screen === "playing" && current ? (
