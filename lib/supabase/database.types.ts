@@ -203,6 +203,7 @@ export type Database = {
           country_code: string | null;
           ready: boolean;
           joined_at: string;
+          match_nickname: string | null;
         };
         Insert: {
           room_code: string;
@@ -211,6 +212,7 @@ export type Database = {
           country_code?: string | null;
           ready?: boolean;
           joined_at?: string;
+          match_nickname?: string | null;
         };
         Update: {
           room_code?: string;
@@ -219,6 +221,7 @@ export type Database = {
           country_code?: string | null;
           ready?: boolean;
           joined_at?: string;
+          match_nickname?: string | null;
         };
         Relationships: [];
       };

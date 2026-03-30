@@ -12,7 +12,47 @@ export function normalizeAnswer(s: string): string {
 }
 
 /** Ignored when comparing flexible multi-word answers (e.g. "piece cake" ≈ "piece of cake"). */
-const EN_STOPWORDS = new Set(["a", "an", "the", "of", "to", "for", "and"]);
+// Keep this focused on common "glue" words so we can be forgiving without becoming too fuzzy.
+const EN_STOPWORDS = new Set([
+  "a",
+  "an",
+  "the",
+  "of",
+  "to",
+  "for",
+  "and",
+  // common pronouns/auxiliaries people type even though we ask for short answers
+  "i",
+  "you",
+  "he",
+  "she",
+  "we",
+  "they",
+  "me",
+  "him",
+  "her",
+  "us",
+  "my",
+  "your",
+  "our",
+  "their",
+  "is",
+  "are",
+  "am",
+  "was",
+  "were",
+  // contractions after `normalizeAnswer` (apostrophes removed)
+  "im",
+  "ive",
+  "ill",
+  "dont",
+  "cant",
+  "wont",
+  "isnt",
+  "arent",
+  "wasnt",
+  "werent",
+]);
 
 function coreEnglishTokens(s: string): string[] {
   return normalizeAnswer(s)
@@ -28,7 +68,18 @@ export function answersMatchLoose(input: string, entry: PalabraEntry): boolean {
   return candidates.some((can) => {
     const canCore = coreEnglishTokens(can);
     if (canCore.length === 0) return false;
-    return canCore.join(" ") === inputCore.join(" ");
+    const canStr = canCore.join(" ");
+    const inStr = inputCore.join(" ");
+    if (canStr === inStr) return true;
+
+    // Allow the expected core tokens to appear in order inside the user's input.
+    // Example: "piece of cake" ≈ expected "piece cake"
+    // Example: "speak it frankly" ≈ expected "speak frankly"
+    let i = 0;
+    for (let j = 0; j < inputCore.length && i < canCore.length; j++) {
+      if (inputCore[j] === canCore[i]) i++;
+    }
+    return i === canCore.length;
   });
 }
 

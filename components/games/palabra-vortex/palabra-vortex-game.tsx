@@ -131,6 +131,22 @@ const MODE_HINTS: Record<GameModeKind, number> = {
 
 const DAILY_WORDS = 20;
 
+const PLACEHOLDER_ES_EN = [
+  "Type your English here…",
+  "Type the translation here…",
+  "English? Go for it…",
+  "What’s this in English?",
+  "Your answer in English…",
+] as const;
+
+const PLACEHOLDER_EN_ES = [
+  "Escribe en español…",
+  "Traducción al español…",
+  "¿Cómo se dice en español?",
+  "Tu respuesta en español…",
+  "Escribe la traducción…",
+] as const;
+
 type PalabraVortexGameProps = {
   initialDifficultyBests?: Record<PalabraDifficultyLevel, number>;
 };
@@ -142,6 +158,8 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
   const inputRef = React.useRef<HTMLInputElement>(null);
   const difficultyRef = React.useRef<PalabraDifficultyLevel>("easy");
   const vocabRoundRef = React.useRef<PalabraVocabResult[]>([]);
+  // Per-run “no repeats” tracker (helps sprint/endless feel less repetitive).
+  const usedItemIdsRef = React.useRef<Set<string>>(new Set());
 
   const [phase, setPhase] = React.useState<Phase>("menu");
   const [mode, setMode] = React.useState<GameModeKind>("sprint");
@@ -262,13 +280,23 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
   const buildQueue = React.useCallback((m: GameModeKind, tier: PalabraDifficultyLevel) => {
     const pool = palabraPoolForDifficulty(tier);
     if (m === "daily") {
+      // Daily is deterministic; no need to track used ids.
       const seed = `palabra-daily-${dailySeedDate()}-${tier}`;
       return shuffleSeeded([...pool], seed).slice(0, Math.min(DAILY_WORDS, pool.length));
     }
-    return shuffleRandom([...pool]);
+
+    // Sprint/endless: pick without repeats within the current run.
+    const remaining = pool.filter((w) => !usedItemIdsRef.current.has(w.id));
+    const chosenSource = remaining.length ? remaining : pool;
+    if (!remaining.length) usedItemIdsRef.current.clear();
+
+    const q = shuffleRandom([...chosenSource]);
+    for (const it of q) usedItemIdsRef.current.add(it.id);
+    return q;
   }, []);
 
   const startGame = (m: GameModeKind) => {
+    usedItemIdsRef.current = new Set();
     setMode(m);
     const q = buildQueue(m, difficultyRef.current);
     setQueue(q);
@@ -298,6 +326,7 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
     setIndex(0);
     setTimeLeft(null);
     setCelebrateRecord(false);
+    usedItemIdsRef.current.clear();
   };
 
   const advanceAfterRound = React.useCallback(
@@ -310,7 +339,13 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
         return;
       }
       if (idxNow + 1 >= qLen) {
-        setQueue(shuffleRandom([...palabraPoolForDifficulty(difficultyRef.current)]));
+        const pool = palabraPoolForDifficulty(difficultyRef.current);
+        const remaining = pool.filter((w) => !usedItemIdsRef.current.has(w.id));
+        const chosenSource = remaining.length ? remaining : pool;
+        if (!remaining.length) usedItemIdsRef.current.clear();
+        const nextQ = shuffleRandom([...chosenSource]);
+        for (const it of nextQ) usedItemIdsRef.current.add(it.id);
+        setQueue(nextQ);
         setIndex(0);
       } else {
         setIndex(idxNow + 1);
@@ -344,7 +379,7 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
       setBurstKey((k) => k + 1);
       const it: PalabraItemType = current.itemType ?? "word";
       setRunBreakdown((b) => ({ ...b, [it]: b[it] + 1 }));
-      window.setTimeout(() => advanceAfterRound(idxNow, qLen), 980);
+      window.setTimeout(() => advanceAfterRound(idxNow, qLen), 800);
     } else {
       setFeedback("wrong");
       playPalabraSound("wrong");
@@ -396,6 +431,17 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
 
   const promptText =
     current && direction === "es-en" ? current.es : current ? current.en : "";
+
+  const answerPlaceholder = React.useMemo(() => {
+    const list = direction === "es-en" ? PLACEHOLDER_ES_EN : PLACEHOLDER_EN_ES;
+    return list[index % list.length]!;
+  }, [direction, index]);
+
+  React.useEffect(() => {
+    if (phase !== "playing" || !current) return;
+    const t = window.setTimeout(() => inputRef.current?.focus(), 60);
+    return () => window.clearTimeout(t);
+  }, [phase, index, current?.id]);
 
   const leaderboard = getLocalLeaderboard().slice(0, 5);
   const bestSprint = getBestForMode("sprint");
@@ -708,7 +754,7 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
                       }}
                       disabled={feedback !== null}
                       className="w-full rounded-xl border border-input bg-background/90 px-4 py-3.5 text-base text-foreground shadow-inner outline-none ring-offset-background placeholder:text-muted-foreground focus-visible:border-fiesta-gold/50 focus-visible:ring-2 focus-visible:ring-fiesta-gold/30 disabled:opacity-60"
-                      placeholder={direction === "es-en" ? "Type English…" : "Escribe en español…"}
+                      placeholder={answerPlaceholder}
                     />
 
                     <AnimatePresence>
@@ -721,17 +767,19 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
                           className={cn(
                             "rounded-xl border p-4 text-sm",
                             feedback === "correct"
-                              ? "border-fiesta-gold/35 bg-fiesta-crimson/15"
+                              ? "border-emerald-400/45 bg-emerald-500/15"
                               : "border-fiesta-orange/40 bg-fiesta-orange/10",
                           )}
                         >
                           {feedback === "correct" ? (
                             <>
-                              <p className="font-semibold text-fiesta-gold">Correct — nice.</p>
+                              <p className="text-lg font-bold text-emerald-400">¡Correcto!</p>
                               <p className="mt-1 text-base font-medium text-foreground">
                                 {direction === "es-en" ? `English: ${current.en}` : `Spanish: ${current.es}`}
                               </p>
-                              {(current.itemType === "idiom" || current.itemType === "collocation") && (
+                              {(current.itemType === "idiom" ||
+                                current.itemType === "collocation" ||
+                                current.itemType === "phrase") && (
                                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{current.hint}</p>
                               )}
                             </>
@@ -801,7 +849,7 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
               role="status"
               aria-live="polite"
             >
-              {feedback === "correct" && <span>Spiral stays hot — siguiente…</span>}
+              {feedback === "correct" && <span className="text-emerald-500/90">¡Correcto! — siguiente…</span>}
               {feedback === "wrong" && <span>Guardado en repaso — siguiente…</span>}
             </div>
           </motion.div>
