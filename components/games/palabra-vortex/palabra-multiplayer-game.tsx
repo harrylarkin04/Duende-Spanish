@@ -102,8 +102,9 @@ const MP_ANSWER_PLACEHOLDERS = [
   "Your strike in English…",
 ] as const;
 
-/** Lobby + start-game minimum (must match `join_palabra_mp_room` cap in Supabase). */
-const MP_REQUIRED_PLAYERS = 3;
+/** Min players to start; max must match `join_palabra_mp_room` cap (see migration 008). */
+const MP_MIN_PLAYERS = 2;
+const MP_MAX_PLAYERS = 3;
 
 const LOBBY_QUICK_REACTIONS = [
   "¡Vamos! 💪",
@@ -112,6 +113,7 @@ const LOBBY_QUICK_REACTIONS = [
   "Te extraño ya ❤️",
   "🔥🔥🔥",
   "Ready when you are 😈",
+  "¡Boobies! ✨",
 ];
 
 const IN_GAME_EMOJI_PRESETS = [
@@ -121,6 +123,7 @@ const IN_GAME_EMOJI_PRESETS = [
   "😂",
   "💋",
   "✨",
+  "🍈",
   "¡Olé!",
   "¡Boobies! ✨",
 ];
@@ -304,7 +307,8 @@ export function PalabraMultiplayerGame() {
   const scoresRef = React.useRef<Record<string, number>>({});
   const membersRef = React.useRef<MemberRow[]>([]);
   const joinedFromUrlRef = React.useRef(false);
-  const nickLobbyInitRef = React.useRef(false);
+  /** When false, lobby nickname field syncs from server/profile; set true on user edit. */
+  const nickTouchedRef = React.useRef(false);
   const gameSeedRef = React.useRef("");
   const monsterHpRef = React.useRef<Record<string, number>>({});
   const rageRoundByUserRef = React.useRef<Record<string, number | undefined>>({});
@@ -758,7 +762,7 @@ export function PalabraMultiplayerGame() {
             setLocalStrikeToast(null);
             setSillyPop(null);
             setCorrectReveal(null);
-            nickLobbyInitRef.current = false;
+            nickTouchedRef.current = false;
             void refreshState(roomCodeRef.current, "soft");
             return;
           }
@@ -951,8 +955,12 @@ export function PalabraMultiplayerGame() {
   const startGameAsHost = async () => {
     if (!supabase || !userId || !roomCode || !isHost) return;
     const readyMembers = members.filter((m) => m.ready);
-    if (members.length < MP_REQUIRED_PLAYERS || readyMembers.length < MP_REQUIRED_PLAYERS) {
-      setErr(`Need ${MP_REQUIRED_PLAYERS} players, all ready, to start.`);
+    if (members.length < MP_MIN_PLAYERS || members.length > MP_MAX_PLAYERS) {
+      setErr(`Need between ${MP_MIN_PLAYERS} and ${MP_MAX_PLAYERS} players to start.`);
+      return;
+    }
+    if (readyMembers.length !== members.length) {
+      setErr("Everyone in the room must tap Ready before starting.");
       return;
     }
     setBusy(true);
@@ -1027,20 +1035,20 @@ export function PalabraMultiplayerGame() {
   };
 
   React.useEffect(() => {
-    nickLobbyInitRef.current = false;
+    nickTouchedRef.current = false;
   }, [roomCode]);
 
   React.useEffect(() => {
     if (screen !== "lobby" || !userId || members.length === 0) return;
-    if (nickLobbyInitRef.current) return;
+    if (nickTouchedRef.current) return;
     const me = members.find((m) => m.user_id === userId);
+    if (!me) return;
     setNicknameDraft(
-      me?.match_nickname?.trim() ||
+      me.match_nickname?.trim() ||
         profiles.get(userId)?.username ||
-        me?.username_snapshot ||
+        me.username_snapshot ||
         "",
     );
-    nickLobbyInitRef.current = true;
   }, [screen, userId, members, profiles]);
 
   const saveMatchNickname = React.useCallback(async () => {
@@ -1048,12 +1056,21 @@ export function PalabraMultiplayerGame() {
     const trimmed = nicknameDraft.trim().slice(0, 40);
     setNickBusy(true);
     try {
-      const { error } = await supabase
+      const value = trimmed.length ? trimmed : null;
+      const { data: updated, error } = await supabase
         .from("palabra_multiplayer_members")
-        .update({ match_nickname: trimmed.length ? trimmed : null })
+        .update({ match_nickname: value })
         .eq("room_code", roomCode)
-        .eq("user_id", userId);
+        .eq("user_id", userId)
+        .select("user_id, match_nickname")
+        .maybeSingle();
       if (error) throw error;
+      if (updated) {
+        setMembers((prev) =>
+          prev.map((m) => (m.user_id === userId ? { ...m, match_nickname: updated.match_nickname } : m)),
+        );
+        nickTouchedRef.current = false;
+      }
       await refreshState(roomCode, "soft");
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Could not save nickname");
@@ -1521,7 +1538,7 @@ export function PalabraMultiplayerGame() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-fiesta-gold/25 bg-fiesta-crimson/15 px-3 py-1 text-xs font-medium text-fiesta-gold">
               <Users className="size-3.5" />
-              Palabra Vortex — up to 3 players
+              Palabra Vortex — 2–3 players
             </div>
             <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               <span className="bg-linear-to-r from-fiesta-gold via-fiesta-orange to-fiesta-crimson bg-clip-text text-transparent">
@@ -1710,7 +1727,10 @@ export function PalabraMultiplayerGame() {
                           <div className="flex flex-wrap gap-2">
                             <input
                               value={nicknameDraft}
-                              onChange={(e) => setNicknameDraft(e.target.value)}
+                              onChange={(e) => {
+                                nickTouchedRef.current = true;
+                                setNicknameDraft(e.target.value);
+                              }}
                               placeholder="e.g. UK Duende King"
                               maxLength={40}
                               className="min-w-[12rem] flex-1 rounded-lg border border-input bg-background px-3 py-2 text-sm"
@@ -1733,9 +1753,15 @@ export function PalabraMultiplayerGame() {
                     </div>
                   );
                 })}
-                {members.length < MP_REQUIRED_PLAYERS ? (
+                {members.length < MP_MIN_PLAYERS ? (
                   <p className="col-span-full text-sm text-muted-foreground">
-                    Waiting for more players ({members.length}/{MP_REQUIRED_PLAYERS})… share the link or code.
+                    Waiting for more players (need at least {MP_MIN_PLAYERS}; room holds up to {MP_MAX_PLAYERS})…
+                    share the link or code.
+                  </p>
+                ) : members.length < MP_MAX_PLAYERS ? (
+                  <p className="col-span-full text-sm text-muted-foreground">
+                    Third seat is optional — you can start with {members.length} when everyone taps Ready, or wait for one
+                    more.
                   </p>
                 ) : null}{" "}
               </div>
@@ -1750,8 +1776,9 @@ export function PalabraMultiplayerGame() {
                     className="gap-2"
                     disabled={
                       busy ||
-                      members.length < MP_REQUIRED_PLAYERS ||
-                      members.filter((m) => m.ready).length < MP_REQUIRED_PLAYERS
+                      members.length < MP_MIN_PLAYERS ||
+                      members.length > MP_MAX_PLAYERS ||
+                      !members.every((m) => m.ready)
                     }
                     onClick={() => void startGameAsHost()}
                   >
@@ -1760,7 +1787,7 @@ export function PalabraMultiplayerGame() {
                   </Button>
                 ) : (
                   <p className="self-center text-sm text-muted-foreground">
-                    Host starts when all {MP_REQUIRED_PLAYERS} are ready.
+                    Host starts when everyone in the room is Ready ({MP_MIN_PLAYERS}–{MP_MAX_PLAYERS} players).
                   </p>
                 )}
               </div>
