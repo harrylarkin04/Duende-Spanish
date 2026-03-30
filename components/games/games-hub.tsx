@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Compass, Gamepad2, Headphones, Sparkles, Swords } from "lucide-react";
+import { Compass, Gamepad2, Headphones, Heart, Sparkles, Swords } from "lucide-react";
 import Link from "next/link";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +13,13 @@ const games = [
     title: "Palabra Vortex",
     desc: "High-speed Spanish ↔ English — sprint, endless, and daily decks.",
     icon: Sparkles,
+    ready: true,
+  },
+  {
+    href: "/games/palabra-vortex/multiplayer",
+    title: "Palabra Vortex · 2 jugadores",
+    desc: "Sala con código, misma palabra en dos países — presencia, enlaces y rivalidad cariñosa.",
+    icon: Heart,
     ready: true,
   },
   {

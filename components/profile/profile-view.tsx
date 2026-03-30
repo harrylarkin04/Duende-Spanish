@@ -28,6 +28,7 @@ type Props = {
 
 const gameLabels: Record<string, string> = {
   "palabra-vortex": "Palabra Vortex",
+  "palabra-vortex-multiplayer": "Palabra Vortex (2P)",
   "grammar-gladiator": "Grammar Gladiator",
   "listening-duel": "Listening Duel",
   "culture-quest": "Culture Quest",

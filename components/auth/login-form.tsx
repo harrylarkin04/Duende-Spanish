@@ -2,14 +2,22 @@
 
 import { Loader2, Mail } from "lucide-react";
 import * as React from "react";
+import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 
 type Mode = "signin" | "signup";
 
+function safeNextPath(raw: string | null): string {
+  if (!raw || !raw.startsWith("/") || raw.startsWith("//")) return "/";
+  return raw;
+}
+
 export function LoginForm() {
   const supabase = React.useMemo(() => createClient(), []);
+  const searchParams = useSearchParams();
+  const afterLogin = safeNextPath(searchParams.get("next"));
   const configured = Boolean(supabase);
   const [mode, setMode] = React.useState<Mode>("signin");
   const [email, setEmail] = React.useState("");
@@ -19,6 +27,7 @@ export function LoginForm() {
   const [error, setError] = React.useState<string | null>(null);
 
   const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const callbackNext = encodeURIComponent(afterLogin);
 
   const onEmailPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,14 +43,14 @@ export function LoginForm() {
         const { error: err } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${origin}/auth/callback?next=/` },
+          options: { emailRedirectTo: `${origin}/auth/callback?next=${callbackNext}` },
         });
         if (err) throw err;
         setMessage("Revisá tu correo para confirmar la cuenta (si está activado en Supabase).");
       } else {
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
-        window.location.href = "/";
+        window.location.href = afterLogin;
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error de autenticación");
@@ -65,7 +74,7 @@ export function LoginForm() {
     try {
       const { error: err } = await supabase.auth.signInWithOtp({
         email: email.trim(),
-        options: { emailRedirectTo: `${origin}/auth/callback?next=/` },
+        options: { emailRedirectTo: `${origin}/auth/callback?next=${callbackNext}` },
       });
       if (err) throw err;
       setMessage("Te enviamos un enlace mágico. Revisá la bandeja de entrada.");
@@ -86,7 +95,7 @@ export function LoginForm() {
     try {
       const { error: err } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${origin}/auth/callback?next=/` },
+        options: { redirectTo: `${origin}/auth/callback?next=${callbackNext}` },
       });
       if (err) throw err;
     } catch (err) {

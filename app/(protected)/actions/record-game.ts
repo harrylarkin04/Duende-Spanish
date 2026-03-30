@@ -76,6 +76,8 @@ export async function recordPalabraRun(payload: {
   correctCount: number;
   totalQuestions: number;
   vocabResults: PalabraVocabResult[];
+  /** Defaults to palabra-vortex so personal bests stay single-player only */
+  gameRecordName?: string;
 }): Promise<RecordPalabraResult> {
   if (!isSupabaseConfigured()) return { ok: false, error: "Supabase no configurado" };
   if (!isLevel(payload.difficulty)) return { ok: false, error: "Dificultad inválida" };
@@ -119,11 +121,13 @@ export async function recordPalabraRun(payload: {
     }
   }
 
+  const gameRecordName = payload.gameRecordName ?? "palabra-vortex";
+
   const { data: prevBestRow } = await supabase
     .from("game_records")
     .select("score")
     .eq("user_id", user.id)
-    .eq("game_name", "palabra-vortex")
+    .eq("game_name", gameRecordName)
     .eq("difficulty", payload.difficulty)
     .order("score", { ascending: false })
     .limit(1)
@@ -134,7 +138,7 @@ export async function recordPalabraRun(payload: {
 
   const { error: insertErr } = await supabase.from("game_records").insert({
     user_id: user.id,
-    game_name: "palabra-vortex",
+    game_name: gameRecordName,
     score: payload.score,
     difficulty: payload.difficulty,
     correct_count: payload.correctCount,
@@ -181,6 +185,7 @@ export async function recordPalabraRun(payload: {
   revalidatePath("/profile");
   revalidatePath("/progress");
   revalidatePath("/games/palabra-vortex");
+  revalidatePath("/games/palabra-vortex/multiplayer");
   revalidatePath("/leaderboards");
 
   return { ok: true, newPersonalBest, bestsByDifficulty };

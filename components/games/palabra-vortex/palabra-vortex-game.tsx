@@ -11,13 +11,14 @@ import {
   Zap,
 } from "lucide-react";
 import * as React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import type { PalabraVocabResult } from "@/app/(protected)/actions/record-game";
 import { recordPalabraRun } from "@/app/(protected)/actions/record-game";
 import { FieryBurst } from "@/components/games/palabra-vortex/fiery-burst";
 import { VictoryConfetti } from "@/components/games/palabra-vortex/victory-confetti";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -467,6 +468,28 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
                     {difficultyBests[difficulty] > 0 ? `${difficultyBests[difficulty]} pts` : "—"}
                   </span>
                 </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-fiesta-orange/25 bg-linear-to-br from-fiesta-crimson/12 to-transparent backdrop-blur-sm">
+              <CardContent className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-[family-name:var(--font-heading)] font-semibold text-foreground">
+                    Duel a partner online
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    6-letter room code, shared deck, “Duende Strike” when they answer first — UK vs Italy, why not.
+                  </p>
+                </div>
+                <Link
+                  href="/games/palabra-vortex/multiplayer"
+                  className={cn(
+                    buttonVariants({ variant: "default", size: "default" }),
+                    "shrink-0 gap-2 border-fiesta-gold/35 bg-fiesta-crimson/25",
+                  )}
+                >
+                  Open multiplayer
+                </Link>
               </CardContent>
             </Card>
 

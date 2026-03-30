@@ -150,9 +150,97 @@ export type Database = {
         };
         Relationships: [];
       };
+      palabra_multiplayer_rooms: {
+        Row: {
+          room_code: string;
+          host_id: string;
+          status: string;
+          difficulty: string;
+          game_seed: string | null;
+          round_index: number;
+          total_rounds: number;
+          target_score: number;
+          round_ends_at: string | null;
+          created_at: string;
+          expires_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          room_code: string;
+          host_id: string;
+          status?: string;
+          difficulty?: string;
+          game_seed?: string | null;
+          round_index?: number;
+          total_rounds?: number;
+          target_score?: number;
+          round_ends_at?: string | null;
+          created_at?: string;
+          expires_at: string;
+          updated_at?: string;
+        };
+        Update: {
+          room_code?: string;
+          host_id?: string;
+          status?: string;
+          difficulty?: string;
+          game_seed?: string | null;
+          round_index?: number;
+          total_rounds?: number;
+          target_score?: number;
+          round_ends_at?: string | null;
+          created_at?: string;
+          expires_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      palabra_multiplayer_members: {
+        Row: {
+          room_code: string;
+          user_id: string;
+          username_snapshot: string | null;
+          country_code: string | null;
+          ready: boolean;
+          joined_at: string;
+        };
+        Insert: {
+          room_code: string;
+          user_id: string;
+          username_snapshot?: string | null;
+          country_code?: string | null;
+          ready?: boolean;
+          joined_at?: string;
+        };
+        Update: {
+          room_code?: string;
+          user_id?: string;
+          username_snapshot?: string | null;
+          country_code?: string | null;
+          ready?: boolean;
+          joined_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
+      create_palabra_mp_room: {
+        Args: { p_difficulty?: string };
+        Returns: { out_room_code: string; out_expires_at: string }[];
+      };
+      join_palabra_mp_room: {
+        Args: {
+          p_room_code: string;
+          p_country_code?: string | null;
+          p_username_snapshot?: string | null;
+        };
+        Returns: null;
+      };
+      rematch_palabra_mp_room: {
+        Args: { p_room_code: string };
+        Returns: null;
+      };
       leaderboard_palabra_bests: {
         Args: { p_difficulty: string; p_since: string | null };
         Returns: { user_id: string; best_score: number }[];
