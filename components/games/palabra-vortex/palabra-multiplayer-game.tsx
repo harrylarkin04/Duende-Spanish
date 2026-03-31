@@ -230,6 +230,7 @@ export function PalabraMultiplayerGame() {
     who: "you" | "partner";
     spanish: string;
     english: string;
+    alternatives?: string[];
     hint: string;
     itemType?: PalabraItemType;
   } | null>(null);
@@ -237,6 +238,7 @@ export function PalabraMultiplayerGame() {
     roundIndex: number;
     spanish: string;
     english: string;
+    alternatives?: string[];
     hint: string;
     itemType?: PalabraItemType;
   } | null>(null);
@@ -647,6 +649,7 @@ export function PalabraMultiplayerGame() {
                   who: p.firstUserId === mine ? "you" : "partner",
                   spanish: entry.es,
                   english: entry.en,
+                  alternatives: entry.acceptedEn,
                   hint: entry.hint,
                   itemType: entry.itemType,
                 });
@@ -660,6 +663,7 @@ export function PalabraMultiplayerGame() {
                   roundIndex: p.roundIndex,
                   spanish: entry.es,
                   english: entry.en,
+                  alternatives: entry.acceptedEn,
                   hint: entry.hint,
                   itemType: entry.itemType,
                 });
@@ -1914,7 +1918,7 @@ export function PalabraMultiplayerGame() {
                         {glad.emoji}
                       </motion.span>
                       <span className="min-w-0">
-                        {m.user_id === userId ? "Your beast" : displayName(m.user_id)}
+                        {displayName(m.user_id)}{m.user_id === userId ? " (you)" : ""}
                         <span className="ml-1 inline text-lg">{flagEmoji(m.country_code ?? countryCode)}</span>
                       </span>
                     </CardTitle>
@@ -2125,6 +2129,11 @@ export function PalabraMultiplayerGame() {
                           <p className="mt-1 text-xs text-muted-foreground">
                             Spanish: {correctReveal.spanish}
                           </p>
+                          {correctReveal.alternatives && correctReveal.alternatives.length > 0 && (
+                            <p className="mt-1 text-xs text-muted-foreground">
+                              Also accepted: {correctReveal.alternatives.join(", ")}
+                            </p>
+                          )}
                           {(correctReveal.itemType === "idiom" ||
                             correctReveal.itemType === "collocation" ||
                             correctReveal.itemType === "phrase") && (
@@ -2149,6 +2158,11 @@ export function PalabraMultiplayerGame() {
                             {failedReveal.english}
                           </p>
                           <p className="mt-1 text-xs text-muted-foreground">Spanish: {failedReveal.spanish}</p>
+                          {failedReveal.alternatives && failedReveal.alternatives.length > 0 && (
+                            <p className="mt-1 text-xs text-muted-foreground">
+                              Also accepted: {failedReveal.alternatives.join(", ")}
+                            </p>
+                          )}
                           {(failedReveal.itemType === "idiom" ||
                             failedReveal.itemType === "collocation" ||
                             failedReveal.itemType === "phrase") && (

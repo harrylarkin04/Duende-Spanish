@@ -453,6 +453,11 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
     () => (current ? buildMaskedEnglishHint(current.en, index * 97 + 13) : ""),
     [current, index],
   );
+  const failAlternatives = React.useMemo(() => {
+    const source = failReveal ?? current;
+    if (!source?.acceptedEn?.length) return [];
+    return source.acceptedEn;
+  }, [failReveal, current]);
 
   React.useEffect(() => {
     if (phase !== "playing" || !current) return;
@@ -819,6 +824,11 @@ export function PalabraVortexGame({ initialDifficultyBests }: PalabraVortexGameP
                               <p className="mt-1 text-xs text-muted-foreground">
                                 Spanish: {failReveal?.es ?? current.es}
                               </p>
+                              {failAlternatives.length > 0 && (
+                                <p className="mt-1 text-xs text-muted-foreground">
+                                  Also accepted: {failAlternatives.join(", ")}
+                                </p>
+                              )}
                               {(failReveal?.itemType === "idiom" ||
                                 failReveal?.itemType === "collocation" ||
                                 failReveal?.itemType === "phrase") && (

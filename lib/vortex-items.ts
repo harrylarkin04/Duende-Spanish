@@ -4,9 +4,9 @@ import raw from "./vortex-items.json";
 
 export type VortexItemType = "word" | "phrase" | "idiom" | "collocation";
 
-export type VortexJsonRow = {
+type VortexRawRow = {
   spanish: string;
-  english: string;
+  english: string | string[];
   difficulty: PalabraDifficultyLevel;
   type: VortexItemType;
   category?: string;
@@ -14,7 +14,65 @@ export type VortexJsonRow = {
   note?: string;
 };
 
-const BASE_ITEMS: VortexJsonRow[] = raw as VortexJsonRow[];
+export interface VortexItem {
+  spanish: string;
+  english: string[]; // primary answer first, then alternatives
+  difficulty: PalabraDifficultyLevel;
+  type: VortexItemType;
+  category?: string;
+  note?: string;
+}
+
+function normalizeEnglishAnswers(row: VortexRawRow): string[] {
+  const primary = Array.isArray(row.english) ? row.english : [row.english];
+  const merged = [...primary, ...(row.acceptedEn ?? [])].map((s) => s.trim()).filter(Boolean);
+  const unique: string[] = [];
+  const seen = new Set<string>();
+  for (const s of merged) {
+    const key = s.toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(s);
+    }
+  }
+  return unique;
+}
+
+const ENGLISH_ALTERNATIVES_BY_SPANISH: Record<string, string[]> = {
+  "tener hambre": ["be hungry", "am hungry", "im hungry", "i am hungry"],
+  "me gusta": ["i like", "like"],
+  "echar de menos": ["miss someone", "miss", "miss them"],
+  "criar cuervos": ["raise crows", "raise someone bad", "create traitors"],
+  "cria cuervos": ["raise crows", "raise someone bad", "create traitors"],
+  "cría cuervos y te sacarán los ojos": ["raise crows", "raise traitors", "raise someone bad"],
+};
+
+function withKnownAlternatives(item: VortexItem): VortexItem {
+  const extras = ENGLISH_ALTERNATIVES_BY_SPANISH[item.spanish.toLowerCase()];
+  if (!extras || extras.length === 0) return item;
+  const merged = [...item.english, ...extras];
+  const uniq: string[] = [];
+  const seen = new Set<string>();
+  for (const s of merged) {
+    const k = s.toLowerCase();
+    if (!seen.has(k)) {
+      seen.add(k);
+      uniq.push(s);
+    }
+  }
+  return { ...item, english: uniq };
+}
+
+const BASE_ITEMS: VortexItem[] = (raw as VortexRawRow[])
+  .map((row) => ({
+    spanish: row.spanish,
+    english: normalizeEnglishAnswers(row),
+    difficulty: row.difficulty,
+    type: row.type,
+    category: row.category,
+    note: row.note,
+  }))
+  .map(withKnownAlternatives);
 
 function wordCount(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
@@ -33,24 +91,24 @@ function englishWordCountOk(english: string): boolean {
 const BASE_DIFF_SPAN_KEYS = new Set(BASE_ITEMS.map((r) => `${r.difficulty}|${r.spanish}`));
 const EXTRA_DIFF_SPAN_KEYS = new Set<string>();
 
-const EXTRA_ITEMS: VortexJsonRow[] = [];
+const EXTRA_ITEMS: VortexItem[] = [];
 
-function addExtra(row: VortexJsonRow) {
+function addExtra(row: VortexItem) {
   const key = `${row.difficulty}|${row.spanish}`;
   if (BASE_DIFF_SPAN_KEYS.has(key)) return;
   if (EXTRA_DIFF_SPAN_KEYS.has(key)) return;
   if (!spanishWordCountOk(row.spanish)) {
     throw new Error(`[vortex extra] Spanish too long: "${row.spanish}"`);
   }
-  if (!englishWordCountOk(row.english)) {
-    throw new Error(`[vortex extra] English too long: "${row.english}"`);
+  if (row.english.length === 0) {
+    throw new Error(`[vortex extra] Missing English answers for: "${row.spanish}"`);
   }
-  for (const a of row.acceptedEn ?? []) {
+  for (const a of row.english) {
     if (!englishWordCountOk(a)) {
-      throw new Error(`[vortex extra] acceptedEn too long: "${a}" (${row.spanish})`);
+      throw new Error(`[vortex extra] English too long: "${a}" (${row.spanish})`);
     }
   }
-  EXTRA_ITEMS.push(row);
+  EXTRA_ITEMS.push(withKnownAlternatives(row));
   EXTRA_DIFF_SPAN_KEYS.add(key);
 }
 
@@ -103,7 +161,7 @@ const WANT_FOODS: FoodPair[] = [
 for (const f of WANT_FOODS) {
   addExtra({
     spanish: `quiero ${f.es}`,
-    english: `want ${f.en}`,
+    english: [`want ${f.en}`],
     difficulty: "easy",
     type: "phrase",
     category: "food",
@@ -143,7 +201,7 @@ const NEED_THINGS: NeedPair[] = [
 for (const n of NEED_THINGS) {
   addExtra({
     spanish: `necesito ${n.es}`,
-    english: `need ${n.en}`,
+    english: [`need ${n.en}`],
     difficulty: "easy",
     type: "phrase",
     category: "travel",
@@ -181,7 +239,7 @@ const FEEL_ADJS: FeelAdj[] = [
 for (const adj of FEEL_ADJS) {
   addExtra({
     spanish: `estoy ${adj.es}`,
-    english: `feel ${adj.en}`,
+    english: [`feel ${adj.en}`],
     difficulty: "easy",
     type: "phrase",
     category: adj.category ?? "emotions",
@@ -216,7 +274,7 @@ const LIKE_FOODS: FoodPair[] = [
 for (const f of LIKE_FOODS) {
   addExtra({
     spanish: `me gusta ${f.es}`,
-    english: `like ${f.en}`,
+    english: [`like ${f.en}`],
     difficulty: "medium",
     type: "phrase",
     category: "love",
@@ -243,7 +301,7 @@ const TRANSPORTS: CollocationPair[] = [
 for (const t of TRANSPORTS) {
   addExtra({
     spanish: `tomar ${t.es}`,
-    english: `take ${t.en}`,
+    english: [`take ${t.en}`],
     difficulty: "medium",
     type: "collocation",
     category: t.category ?? "travel",
@@ -275,7 +333,7 @@ const TASKS: CollocationPair[] = [
 for (const task of TASKS) {
   addExtra({
     spanish: `hacer ${task.es}`,
-    english: task.en,
+    english: [task.en],
     difficulty: "medium",
     type: "collocation",
     category: task.category ?? "daily",
@@ -284,17 +342,17 @@ for (const task of TASKS) {
 }
 
 // Curated idioms (hard/expert): keep them short in English + include a quick usage note.
-const EXTRA_IDIOMS: Array<{ es: string; en: string; diff: PalabraDifficultyLevel; note: string; category?: string; acceptedEn?: string[] }> = [
-  { es: "entre la espada y la pared", en: "in a bind", diff: "hard", note: "Same idea as estar entre la espada y la pared — no easy option.", category: "emotions" },
-  { es: "echar leña al fuego", en: "add fuel", diff: "hard", note: "To make a conflict worse." , category: "social"},
-  { es: "tomar el pelo", en: "pull your leg", diff: "hard", note: "To tease someone." , category: "social"},
-  { es: "irse por las ramas", en: "ramble on", diff: "hard", note: "To talk too much without getting to the point." , category: "speech"},
+const EXTRA_IDIOMS: Array<{ es: string; en: string | string[]; diff: PalabraDifficultyLevel; note: string; category?: string }> = [
+  { es: "entre la espada y la pared", en: ["in a bind", "cornered"], diff: "hard", note: "Same idea as estar entre la espada y la pared — no easy option.", category: "emotions" },
+  { es: "echar leña al fuego", en: ["add fuel", "make worse"], diff: "hard", note: "To make a conflict worse." , category: "social"},
+  { es: "tomar el pelo", en: ["pull your leg", "tease"], diff: "hard", note: "To tease someone." , category: "social"},
+  { es: "irse por las ramas", en: ["ramble on", "go off topic"], diff: "hard", note: "To talk too much without getting to the point." , category: "speech"},
   { es: "poner los puntos sobre las íes", en: "clarify fully", diff: "hard", note: "To clear up details properly." , category: "work"},
   { es: "cortar por lo sano", en: "cut it short", diff: "hard", note: "To end quickly and decisively." , category: "daily"},
   { es: "llorar lágrimas de cocodrilo", en: "crocodile tears", diff: "hard", note: "Fake sadness." , category: "emotions"},
   { es: "ir al grano", en: "get to point", diff: "hard", note: "To be direct." , category: "speech"},
   { es: "ponerse colorado", en: "blush", diff: "hard", note: "From embarrassment." , category: "emotions"},
-  { es: "no tener ni idea", en: "no clue", diff: "medium", note: "When you truly don't know." , category: "daily"},
+  { es: "no tener ni idea", en: ["no clue", "have no clue"], diff: "medium", note: "When you truly don't know." , category: "daily"},
   { es: "hacer oídos sordos", en: "ignore completely", diff: "medium", note: "To pretend you didn't hear." , category: "daily"},
   { es: "poner en marcha", en: "get going", diff: "medium", note: "To start an activity." , category: "work"},
   { es: "poner la mano en el fuego", en: "vouch for", diff: "hard", note: "To strongly back someone." , category: "work"},
@@ -313,7 +371,7 @@ const EXTRA_IDIOMS: Array<{ es: string; en: string; diff: PalabraDifficultyLevel
   { es: "no venir al caso", en: "not relevant", diff: "hard", note: "To be off-topic." , category: "speech"},
   { es: "no morderse la lengua", en: "speak up", diff: "hard", note: "To speak honestly / without holding back." , category: "speech"},
   { es: "estar al tanto", en: "stay informed", diff: "hard", note: "To keep up with what's happening." , category: "work"},
-  { es: "ser pan comido", en: "very easy", diff: "hard", note: "Very easy, like saying 'piece of cake'." , category: "daily"},
+  { es: "ser pan comido", en: ["very easy", "piece of cake"], diff: "hard", note: "Very easy, like saying 'piece of cake'." , category: "daily"},
   { es: "costar un ojo de la cara", en: "costs a lot", diff: "expert", note: "Very expensive." , category: "money"},
   { es: "salir rana", en: "turn out bad", diff: "expert", note: "To end up disappointing." , category: "daily"},
   { es: "estar como una cabra", en: "be crazy", diff: "expert", note: "To be acting weird." , category: "social"},
@@ -327,16 +385,15 @@ const EXTRA_IDIOMS: Array<{ es: string; en: string; diff: PalabraDifficultyLevel
 for (const idm of EXTRA_IDIOMS) {
   addExtra({
     spanish: idm.es,
-    english: idm.en,
+    english: Array.isArray(idm.en) ? idm.en : [idm.en],
     difficulty: idm.diff,
     type: "idiom",
     category: idm.category,
     note: idm.note,
-    acceptedEn: idm.acceptedEn,
   });
 }
 
-export const VORTEX_ITEMS: VortexJsonRow[] = [...BASE_ITEMS, ...EXTRA_ITEMS];
+export const VORTEX_ITEMS: VortexItem[] = [...BASE_ITEMS, ...EXTRA_ITEMS];
 
 function slugify(s: string): string {
   return s
@@ -348,7 +405,7 @@ function slugify(s: string): string {
     .slice(0, 48);
 }
 
-function defaultHint(row: VortexJsonRow): string {
+function defaultHint(row: VortexItem): string {
   const cat = row.category ? `${row.category} · ` : "";
   const typeLabel =
     row.type === "word"
@@ -368,8 +425,8 @@ export function vortexWordsToVocabulary(): PalabraEntry[] {
     return {
       id,
       es: row.spanish,
-      en: row.english,
-      acceptedEn: row.acceptedEn,
+      en: row.english[0]!,
+      acceptedEn: row.english.slice(1),
       hint: row.note ?? defaultHint(row),
       difficulty: row.difficulty,
       topic: row.category ?? "general",
@@ -382,11 +439,10 @@ export function vortexWordsToVocabulary(): PalabraEntry[] {
 if (process.env.NODE_ENV === "development") {
   const countWords = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
   for (const r of VORTEX_ITEMS) {
-    if (countWords(r.english) > 3) console.error("[vortex] English >3 words:", r.spanish, r.english);
-    if (countWords(r.spanish) > 6) console.error("[vortex] Spanish >6 words:", r.spanish);
-    for (const a of r.acceptedEn ?? []) {
-      if (countWords(a) > 3) console.error("[vortex] acceptedEn >3:", a);
+    for (const en of r.english) {
+      if (countWords(en) > 3) console.error("[vortex] English >3 words:", r.spanish, en);
     }
+    if (countWords(r.spanish) > 6) console.error("[vortex] Spanish >6 words:", r.spanish);
   }
   if (VORTEX_ITEMS.length < 600) {
     console.warn(`[vortex] Expected 600+ items, got ${VORTEX_ITEMS.length}.`);
