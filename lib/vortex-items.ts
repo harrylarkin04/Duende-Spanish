@@ -205,7 +205,7 @@ const LIKE_FOODS: FoodPair[] = [
   { es: "el yogur", en: "yogurt" },
   { es: "la sopa", en: "soup" },
   { es: "la ensalada", en: "salad" },
-  { es: "el helado", en: "icecream" },
+  { es: "el helado", en: "ice cream" },
   { es: "la cerveza", en: "beer" },
   { es: "la cola", en: "cola" },
   { es: "el arroz", en: "rice" },
@@ -216,7 +216,7 @@ const LIKE_FOODS: FoodPair[] = [
 for (const f of LIKE_FOODS) {
   addExtra({
     spanish: `me gusta ${f.es}`,
-    english: `I like ${f.en}`,
+    english: `like ${f.en}`,
     difficulty: "medium",
     type: "phrase",
     category: "love",
@@ -313,8 +313,8 @@ const EXTRA_IDIOMS: Array<{ es: string; en: string; diff: PalabraDifficultyLevel
   { es: "no venir al caso", en: "not relevant", diff: "hard", note: "To be off-topic." , category: "speech"},
   { es: "no morderse la lengua", en: "speak up", diff: "hard", note: "To speak honestly / without holding back." , category: "speech"},
   { es: "estar al tanto", en: "stay informed", diff: "hard", note: "To keep up with what's happening." , category: "work"},
-  { es: "ser pan comido", en: "piece cake", diff: "hard", note: "Very easy." , category: "daily"},
-  { es: "costar un ojo de la cara", en: "cost arm", diff: "expert", note: "Very expensive." , category: "money"},
+  { es: "ser pan comido", en: "very easy", diff: "hard", note: "Very easy, like saying 'piece of cake'." , category: "daily"},
+  { es: "costar un ojo de la cara", en: "costs a lot", diff: "expert", note: "Very expensive." , category: "money"},
   { es: "salir rana", en: "turn out bad", diff: "expert", note: "To end up disappointing." , category: "daily"},
   { es: "estar como una cabra", en: "be crazy", diff: "expert", note: "To be acting weird." , category: "social"},
   { es: "caer bien", en: "seem nice", diff: "expert", note: "To be well-liked." , category: "social"},

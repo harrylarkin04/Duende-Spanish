@@ -14,8 +14,8 @@ export const MP_STRIKE_BONUS = 50;
 export const MP_BASE_SCORE = 100;
 /** Grammar Gladiator — monster HP battle */
 export const MP_MONSTER_MAX_HP = 100;
-/** Skip only in the first N ms of a round (anti-spam). */
-export const MP_SKIP_WINDOW_MS = 15_000;
+/** One skip request allowed every N ms per player (anti-spam). */
+export const MP_SKIP_COOLDOWN_MS = 8_000;
 
 export type MpBattleMonster = {
   key: string;
@@ -162,7 +162,7 @@ export type MPBPayload =
   | { t: "reaction"; userId: string; preset: string }
   | { t: "strike_flash"; winnerId: string; displayName: string }
   | { t: "hint_spent"; roundIndex: number; userId: string }
-  | { t: "skip_request"; roundIndex: number; userId: string }
+  | { t: "skip_request"; roundIndex: number; userId: string; at: number }
   | { t: "duende_rage"; roundIndex: number; userId: string }
   | { t: "rematch" };
 

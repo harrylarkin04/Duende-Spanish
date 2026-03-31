@@ -7,7 +7,8 @@ export function normalizeAnswer(s: string): string {
     .toLowerCase()
     .normalize("NFD")
     .replace(/\p{M}/gu, "")
-    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/-/g, " ")
+    .replace(/[^\p{L}\p{N}\s]/gu, "")
     .replace(/\s+/g, " ");
 }
 
@@ -60,13 +61,21 @@ function coreEnglishTokens(s: string): string[] {
     .filter((t) => t && !EN_STOPWORDS.has(t));
 }
 
+function normalizeTokenLoose(token: string): string {
+  if (token.length <= 3) return token;
+  if (token.endsWith("ing") && token.length > 5) return token.slice(0, -3);
+  if (token.endsWith("ed") && token.length > 4) return token.slice(0, -2);
+  if (token.endsWith("s") && !token.endsWith("ss") && token.length > 4) return token.slice(0, -1);
+  return token;
+}
+
 /** Same meaning, allowing dropped articles/prepositions in English. */
 export function answersMatchLoose(input: string, entry: PalabraEntry): boolean {
-  const inputCore = coreEnglishTokens(input);
+  const inputCore = coreEnglishTokens(input).map(normalizeTokenLoose);
   if (inputCore.length === 0) return false;
   const candidates = [entry.en, ...(entry.acceptedEn ?? [])];
   return candidates.some((can) => {
-    const canCore = coreEnglishTokens(can);
+    const canCore = coreEnglishTokens(can).map(normalizeTokenLoose);
     if (canCore.length === 0) return false;
     const canStr = canCore.join(" ");
     const inStr = inputCore.join(" ");
@@ -81,6 +90,28 @@ export function answersMatchLoose(input: string, entry: PalabraEntry): boolean {
     }
     return i === canCore.length;
   });
+}
+
+export function buildMaskedEnglishHint(english: string, seed: number): string {
+  const text = normalizeAnswer(english);
+  let out = "";
+  let seenInWord = 0;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i]!;
+    if (!/[a-z0-9]/.test(ch)) {
+      out += ch;
+      seenInWord = 0;
+      continue;
+    }
+    seenInWord += 1;
+    if (seenInWord === 1) {
+      out += ch;
+      continue;
+    }
+    const hide = ((seed + i * 37) % 100) < 56;
+    out += hide ? "•" : ch;
+  }
+  return out;
 }
 
 export function answersMatch(input: string, entry: PalabraEntry): boolean {

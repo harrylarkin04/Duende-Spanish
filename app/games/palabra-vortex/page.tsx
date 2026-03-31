@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Palabra Vortex — Duende",
   description:
-    "High-speed Spanish ↔ English translation game. Mixed words, phrases, collocations, and short idioms — answers stay to 1–3 words in English.",
+    "High-speed Spanish ↔ English translation game with full phrase reveals on fail, automatic 10s masked-English hints, and forgiving answer checks.",
 };
 
 export default async function PalabraVortexPage() {

@@ -36,12 +36,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { checkTranslation } from "@/lib/games/palabra-vortex/game-utils";
+import { buildMaskedEnglishHint, checkTranslation } from "@/lib/games/palabra-vortex/game-utils";
 import type { PalabraDifficultyLevel, PalabraEntry, PalabraItemType } from "@/lib/games/palabra-vortex/types";
 import {
   countryLabel,
   flagEmoji,
-  hintMaskSeed,
   MP_BASE_SCORE,
   MP_BROADCAST_EVENT,
   MP_DEFAULT_ROUNDS,
@@ -49,12 +48,11 @@ import {
   MP_MONSTER_MAX_HP,
   MP_ROUND_BOSS_MONSTERS,
   MP_ROUND_MS,
-  MP_SKIP_WINDOW_MS,
+  MP_SKIP_COOLDOWN_MS,
   MP_STRIKE_BONUS,
   MP_TARGET_SCORE,
   playerGladiatorMonster,
   roundBossMonster,
-  shouldHideHintLetter,
   strikeMonsterDamage,
   buildMpDeck,
   guessBrowserCountry,
@@ -129,8 +127,8 @@ const IN_GAME_EMOJI_PRESETS = [
 ];
 
 const SKIP_MESSAGES = [
-  "Too hard? Skipping like a pro 😂",
-  "Skipped! Even natives struggle with this one sometimes",
+  "Too hard? No shame in skipping ❤️",
+  "Skipped! Even natives struggle sometimes 😂",
   "Coward move activated 🏃‍♀️",
   "Tactical retreat — your monster fled! 🥴",
 ];
@@ -183,37 +181,8 @@ function MonsterHpBar({ hp, maxHp }: { hp: number; maxHp: number }) {
   );
 }
 
-function HintMaskedSpanish({ text, seed }: { text: string; seed: number }) {
-  return (
-    <span className="inline leading-relaxed tracking-wide">
-      {[...text].map((ch, i) => {
-        if (!/\p{L}/u.test(ch)) {
-          return (
-            <span key={`${i}-${ch}`} className="inline">
-              {ch}
-            </span>
-          );
-        }
-        if (!shouldHideHintLetter(ch, i, seed)) {
-          return (
-            <span key={`${i}-${ch}`} className="inline text-foreground">
-              {ch}
-            </span>
-          );
-        }
-        return (
-          <span
-            key={`${i}-x`}
-            className="mx-0.5 inline-block min-w-[0.55em] rounded-sm border border-fiesta-gold/50 bg-foreground/85 px-0.5 text-center align-baseline text-[10px] font-bold text-transparent select-none"
-            aria-hidden
-            title="?"
-          >
-            ★
-          </span>
-        );
-      })}
-    </span>
-  );
+function HintMaskedEnglish({ text, seed }: { text: string; seed: number }) {
+  return <span className="inline leading-relaxed tracking-wide">{buildMaskedEnglishHint(text, seed)}</span>;
 }
 
 export function PalabraMultiplayerGame() {
@@ -259,6 +228,14 @@ export function PalabraMultiplayerGame() {
   const [correctReveal, setCorrectReveal] = React.useState<{
     roundIndex: number;
     who: "you" | "partner";
+    spanish: string;
+    english: string;
+    hint: string;
+    itemType?: PalabraItemType;
+  } | null>(null);
+  const [failedReveal, setFailedReveal] = React.useState<{
+    roundIndex: number;
+    spanish: string;
     english: string;
     hint: string;
     itemType?: PalabraItemType;
@@ -315,6 +292,7 @@ export function PalabraMultiplayerGame() {
   const rageUsedHostRef = React.useRef<Record<string, boolean>>({});
   const roundIndexRef = React.useRef(0);
   const gameAnswerInputRef = React.useRef<HTMLInputElement>(null);
+  const skipCooldownUntilByUserRef = React.useRef<Record<string, number>>({});
 
   const [boot, setBoot] = React.useState<"checking" | "ready" | "failed">("checking");
   const [bootFailTitle, setBootFailTitle] = React.useState("Can’t start multiplayer");
@@ -523,7 +501,9 @@ export function PalabraMultiplayerGame() {
             if (!isHostRef.current) return;
             if (hostFinalizedRoundRef.current.has(p.roundIndex)) return;
             if (p.roundIndex !== roundIndexRef.current) return;
-            if (Date.now() - roundStartMsRef.current > MP_SKIP_WINDOW_MS) return;
+            const lastAt = skipCooldownUntilByUserRef.current[p.userId] ?? 0;
+            if (p.at < lastAt) return;
+            skipCooldownUntilByUserRef.current[p.userId] = p.at + MP_SKIP_COOLDOWN_MS;
             void finalizeRoundHostRef.current(null, p.roundIndex, undefined, p.userId);
             return;
           }
@@ -581,10 +561,12 @@ export function PalabraMultiplayerGame() {
             setHintsByUser({});
             setFastestByUser({});
             setIdiomStrikesByUser({});
+            skipCooldownUntilByUserRef.current = {};
             setReactionLog([]);
             setLocalStrikeToast(null);
             setSillyPop(null);
             setCorrectReveal(null);
+            setFailedReveal(null);
             return;
           }
 
@@ -599,6 +581,7 @@ export function PalabraMultiplayerGame() {
             setRoundMsg(null);
             setHintVisible(false);
             setCorrectReveal(null);
+            setFailedReveal(null);
             return;
           }
 
@@ -608,7 +591,10 @@ export function PalabraMultiplayerGame() {
             setLockedRoundIndex(p.roundIndex);
             setScores({ ...p.scores });
             const mine = userIdRef.current;
-            if (p.skippedBy) setCorrectReveal(null);
+            if (p.skippedBy) {
+              setCorrectReveal(null);
+              setFailedReveal(null);
+            }
 
             if (p.monsterHp) {
               monsterHpRef.current = p.monsterHp;
@@ -659,11 +645,25 @@ export function PalabraMultiplayerGame() {
                 setCorrectReveal({
                   roundIndex: p.roundIndex,
                   who: p.firstUserId === mine ? "you" : "partner",
+                  spanish: entry.es,
                   english: entry.en,
                   hint: entry.hint,
                   itemType: entry.itemType,
                 });
                 window.setTimeout(() => setCorrectReveal(null), 3500);
+              }
+            } else if (!p.skippedBy) {
+              const entry = deckRef.current[p.roundIndex];
+              if (entry) {
+                setHintVisible(false);
+                setFailedReveal({
+                  roundIndex: p.roundIndex,
+                  spanish: entry.es,
+                  english: entry.en,
+                  hint: entry.hint,
+                  itemType: entry.itemType,
+                });
+                window.setTimeout(() => setFailedReveal(null), 4200);
               }
             }
 
@@ -762,7 +762,9 @@ export function PalabraMultiplayerGame() {
             setLocalStrikeToast(null);
             setSillyPop(null);
             setCorrectReveal(null);
+            setFailedReveal(null);
             nickTouchedRef.current = false;
+            skipCooldownUntilByUserRef.current = {};
             void refreshState(roomCodeRef.current, "soft");
             return;
           }
@@ -980,6 +982,8 @@ export function PalabraMultiplayerGame() {
       setRageUsedMap({});
       setSummaryKoWinnerId(null);
       setBattleFx(null);
+      setFailedReveal(null);
+      skipCooldownUntilByUserRef.current = {};
       const ends = Date.now() + MP_ROUND_MS;
       totalRoundsRef.current = room?.total_rounds ?? MP_DEFAULT_ROUNDS;
       targetScoreRef.current = room?.target_score ?? MP_TARGET_SCORE;
@@ -1293,7 +1297,7 @@ export function PalabraMultiplayerGame() {
     lockedRoundIndex !== roundIndex;
 
   const hintSeed = React.useMemo(
-    () => (current ? hintMaskSeed(roundIndex, current.es) : 0),
+    () => (current ? roundIndex * 131 + current.en.length * 17 : 0),
     [current, roundIndex],
   );
 
@@ -1355,21 +1359,21 @@ export function PalabraMultiplayerGame() {
     return () => window.clearInterval(id);
   }, [screen, roundIndex, roundEndsAt]);
 
-  const { skipEnabled, roundElapsedMs } = React.useMemo(() => {
+  const { skipEnabled, skipCooldownLeftMs } = React.useMemo(() => {
     void uiTick;
-    const elapsed =
-      roundEndsAt != null
-        ? Math.max(0, Math.min(MP_ROUND_MS, MP_ROUND_MS - (roundEndsAt - Date.now())))
-        : 0;
+    if (!userId) return { skipEnabled: false, skipCooldownLeftMs: 0 };
+    const now = Date.now();
+    const cooldownUntil = skipCooldownUntilByUserRef.current[userId] ?? 0;
+    const cooldownLeft = Math.max(0, cooldownUntil - now);
     return {
-      roundElapsedMs: elapsed,
       skipEnabled:
         screen === "playing" &&
         submittedRound !== roundIndex &&
         lockedRoundIndex !== roundIndex &&
-        elapsed <= MP_SKIP_WINDOW_MS,
+        cooldownLeft <= 0,
+      skipCooldownLeftMs: cooldownLeft,
     };
-  }, [screen, roundEndsAt, submittedRound, lockedRoundIndex, roundIndex, uiTick]);
+  }, [screen, submittedRound, lockedRoundIndex, roundIndex, uiTick, userId]);
 
   const roundBoss = React.useMemo(
     () => (gameSeed ? roundBossMonster(roundIndex, gameSeed) : MP_ROUND_BOSS_MONSTERS[0]),
@@ -1838,8 +1842,7 @@ export function PalabraMultiplayerGame() {
               {scoreTaunt}
             </p>
             <p className="text-xs text-muted-foreground">
-              KO at 0 HP · or highest score after {totalRoundsRef.current} rounds · Skip only in first{" "}
-              {MP_SKIP_WINDOW_MS / 1000}s
+              KO at 0 HP · or highest score after {totalRoundsRef.current} rounds · Skip cooldown {MP_SKIP_COOLDOWN_MS / 1000}s
             </p>
           </div>
 
@@ -2039,7 +2042,9 @@ export function PalabraMultiplayerGame() {
                         disabled={!skipEnabled || inputLockedPlaying}
                         onClick={() => {
                           if (!userId || !skipEnabled || inputLockedPlaying) return;
-                          sendPayload({ t: "skip_request", roundIndex, userId });
+                          const at = Date.now();
+                          skipCooldownUntilByUserRef.current[userId] = at + MP_SKIP_COOLDOWN_MS;
+                          sendPayload({ t: "skip_request", roundIndex, userId, at });
                         }}
                       >
                         <FastForward className="size-5" />
@@ -2047,8 +2052,7 @@ export function PalabraMultiplayerGame() {
                       </Button>
                     </div>
                     <p className="text-center text-[10px] text-muted-foreground">
-                      Rage: once per match · Skip: {Math.max(0, Math.ceil((MP_SKIP_WINDOW_MS - roundElapsedMs) / 1000))}s
-                      left in window
+                      Rage: once per match · Skip cooldown: {Math.ceil(skipCooldownLeftMs / 1000)}s
                     </p>
 
                     <AnimatePresence>
@@ -2064,8 +2068,9 @@ export function PalabraMultiplayerGame() {
                             Duende Hint ✨
                           </p>
                           <p className="mt-2 font-[family-name:var(--font-heading)] text-lg font-semibold sm:text-xl">
-                            <HintMaskedSpanish text={current.es} seed={hintSeed} />
+                            <HintMaskedEnglish text={current.en} seed={hintSeed} />
                           </p>
+                          <p className="mt-1 text-[11px] text-muted-foreground">English hint with hidden letters.</p>
                         </motion.div>
                       ) : null}
                     </AnimatePresence>
@@ -2117,12 +2122,37 @@ export function PalabraMultiplayerGame() {
                           <p className="mt-1 font-[family-name:var(--font-heading)] text-lg font-semibold text-foreground sm:text-xl">
                             {correctReveal.english}
                           </p>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            Spanish: {correctReveal.spanish}
+                          </p>
                           {(correctReveal.itemType === "idiom" ||
                             correctReveal.itemType === "collocation" ||
                             correctReveal.itemType === "phrase") && (
                             <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                               {correctReveal.hint}
                             </p>
+                          )}
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
+                    <AnimatePresence>
+                      {failedReveal && failedReveal.roundIndex === roundIndex ? (
+                        <motion.div
+                          initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                          transition={{ duration: 0.28 }}
+                          className="mt-2 rounded-xl border border-fiesta-orange/40 bg-fiesta-orange/10 p-4"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-wide text-fiesta-orange">The answer was:</p>
+                          <p className="mt-1 font-[family-name:var(--font-heading)] text-lg font-semibold text-foreground sm:text-xl">
+                            {failedReveal.english}
+                          </p>
+                          <p className="mt-1 text-xs text-muted-foreground">Spanish: {failedReveal.spanish}</p>
+                          {(failedReveal.itemType === "idiom" ||
+                            failedReveal.itemType === "collocation" ||
+                            failedReveal.itemType === "phrase") && (
+                            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{failedReveal.hint}</p>
                           )}
                         </motion.div>
                       ) : null}

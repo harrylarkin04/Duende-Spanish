@@ -8,7 +8,7 @@ import { MultiplayerSuspenseFallback } from "./multiplayer-suspense-fallback";
 export const metadata: Metadata = {
   title: "Palabra Vortex Multijugador — Duende",
   description:
-    "Grammar Gladiators: 12 rondas, monstruos por ronda, barras de vida, Skip temprano, Duende Rage (2× puntos una vez) y pistas — duelo spanish→english (1–3 palabras) sincronizado con Supabase Realtime.",
+    "Grammar Gladiators: synced 2–3 player rounds with full answer reveal on fail, 10s masked-English hints, and skip-for-all with cooldown in Supabase Realtime.",
 };
 
 export default function PalabraMultiplayerPage() {
