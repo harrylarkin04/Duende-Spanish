@@ -225,9 +225,114 @@ export type Database = {
         };
         Relationships: [];
       };
+      poo_feast_rooms: {
+        Row: {
+          room_code: string;
+          host_id: string;
+          status: string;
+          game_seed: string | null;
+          digest_started_at: string | null;
+          created_at: string;
+          expires_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          room_code: string;
+          host_id: string;
+          status?: string;
+          game_seed?: string | null;
+          digest_started_at?: string | null;
+          created_at?: string;
+          expires_at: string;
+          updated_at?: string;
+        };
+        Update: {
+          room_code?: string;
+          host_id?: string;
+          status?: string;
+          game_seed?: string | null;
+          digest_started_at?: string | null;
+          created_at?: string;
+          expires_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      poo_feast_members: {
+        Row: {
+          room_code: string;
+          user_id: string;
+          username_snapshot: string | null;
+          country_code: string | null;
+          ready: boolean;
+          joined_at: string;
+        };
+        Insert: {
+          room_code: string;
+          user_id: string;
+          username_snapshot?: string | null;
+          country_code?: string | null;
+          ready?: boolean;
+          joined_at?: string;
+        };
+        Update: {
+          room_code?: string;
+          user_id?: string;
+          username_snapshot?: string | null;
+          country_code?: string | null;
+          ready?: boolean;
+          joined_at?: string;
+        };
+        Relationships: [];
+      };
+      poo_feast_picks: {
+        Row: {
+          room_code: string;
+          user_id: string;
+          picks: string[];
+          updated_at: string;
+        };
+        Insert: {
+          room_code: string;
+          user_id: string;
+          picks: string[];
+          updated_at?: string;
+        };
+        Update: {
+          room_code?: string;
+          user_id?: string;
+          picks?: string[];
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
+      create_poo_feast_room: {
+        Args: Record<string, never>;
+        Returns: { out_room_code: string; out_expires_at: string }[];
+      };
+      join_poo_feast_room: {
+        Args: {
+          p_room_code: string;
+          p_country_code?: string | null;
+          p_username_snapshot?: string | null;
+        };
+        Returns: null;
+      };
+      begin_poo_feast_picking: {
+        Args: { p_room_code: string };
+        Returns: null;
+      };
+      submit_poo_feast_picks: {
+        Args: { p_room_code: string; p_picks: string[] };
+        Returns: null;
+      };
+      rematch_poo_feast_room: {
+        Args: { p_room_code: string };
+        Returns: null;
+      };
       create_palabra_mp_room: {
         Args: { p_difficulty?: string };
         Returns: { out_room_code: string; out_expires_at: string }[];

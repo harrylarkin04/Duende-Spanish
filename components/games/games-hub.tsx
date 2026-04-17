@@ -46,7 +46,7 @@ const games = [
   {
     href: "/games/poo-feast",
     title: "Festín olfativo",
-    desc: "Dos jugadores eligen platos en local; gana quien alcance el índice de aroma más alto.",
+    desc: "Local o sala con código: menú secreto, digestión sincronizada y índice de aroma.",
     icon: Flame,
     ready: true,
   },
