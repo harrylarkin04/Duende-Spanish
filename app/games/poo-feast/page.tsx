@@ -63,8 +63,9 @@ export default function PooFeastLauncherPage() {
         <CardHeader>
           <CardTitle className="text-base">Tip</CardTitle>
           <CardDescription>
-            El modo en línea requiere iniciar sesión y la migración SQL <code className="text-xs">009_poo_feast_multiplayer.sql</code>{" "}
-            aplicada en tu proyecto Supabase.
+            El modo en línea requiere iniciar sesión y las migraciones SQL{" "}
+            <code className="text-xs">009_poo_feast_multiplayer.sql</code> y{" "}
+            <code className="text-xs">010_poo_feast_standalone_room_code.sql</code> aplicadas en Supabase (SQL editor o CLI).
           </CardDescription>
         </CardHeader>
       </Card>

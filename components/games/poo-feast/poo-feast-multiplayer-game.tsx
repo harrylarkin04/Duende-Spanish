@@ -51,6 +51,25 @@ type ProfileMini = { user_id: string; username: string | null; avatar_url: strin
 
 type Screen = "entry" | "lobby" | "picking" | "digest";
 
+/** PostgREST / Supabase errors are often `{ message }` objects, not `Error` instances. */
+function supabaseThrownMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  if (typeof e === "object" && e !== null) {
+    const o = e as Record<string, unknown>;
+    if (typeof o.message === "string" && o.message.length > 0) return o.message;
+    if (typeof o.error_description === "string" && o.error_description.length > 0)
+      return o.error_description;
+    if (typeof o.hint === "string" && o.hint.length > 0 && typeof o.message === "string")
+      return `${o.message} (${o.hint})`;
+  }
+  if (typeof e === "string") return e;
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return "Request failed";
+  }
+}
+
 export function PooFeastMultiplayerGame(): React.ReactElement {
   const reduceMotion = useReducedMotion();
   const reduce = reduceMotion === true;
@@ -216,7 +235,8 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
         setScreen("lobby");
       } catch (e) {
         joinedFromUrlRef.current = false;
-        setErr(e instanceof Error ? e.message : "Join failed");
+        console.error("[poo-feast-mp] join from URL:", e);
+        setErr(supabaseThrownMessage(e));
       } finally {
         setBusy(false);
       }
@@ -280,7 +300,13 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
   }, [revealLocal, picks]);
 
   const createRoom = async () => {
-    if (!supabase || !userId) return;
+    if (!supabase) {
+      setErr(
+        "Supabase no está configurado en esta compilación (faltan NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY).",
+      );
+      return;
+    }
+    if (!userId) return;
     setBusy(true);
     setErr(null);
     try {
@@ -296,7 +322,13 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
       }
       setScreen("lobby");
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Create failed");
+      console.error("[poo-feast-mp] createRoom:", e);
+      const msg = supabaseThrownMessage(e);
+      setErr(
+        msg.includes("generate_palabra") || msg.includes("does not exist") || msg.includes("42883")
+          ? `${msg} — En Supabase, ejecuta las migraciones 009 y 010 de supabase/migrations (Festín olfativo).`
+          : msg,
+      );
     } finally {
       setBusy(false);
     }
@@ -330,7 +362,8 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
       }
       setScreen("lobby");
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Join failed");
+      console.error("[poo-feast-mp] joinManual:", e);
+      setErr(supabaseThrownMessage(e));
     } finally {
       setBusy(false);
     }
@@ -358,7 +391,8 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
       if (error) throw error;
       await refreshState(roomCode);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Start failed");
+      console.error("[poo-feast-mp] startPicking:", e);
+      setErr(supabaseThrownMessage(e));
     } finally {
       setBusy(false);
     }
@@ -384,7 +418,8 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
       if (error) throw error;
       await refreshState(roomCode);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Submit failed");
+      console.error("[poo-feast-mp] lockMenu:", e);
+      setErr(supabaseThrownMessage(e));
     } finally {
       setBusy(false);
     }
@@ -400,7 +435,8 @@ export function PooFeastMultiplayerGame(): React.ReactElement {
       setRevealLocal(false);
       setScores(null);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Rematch failed");
+      console.error("[poo-feast-mp] rematch:", e);
+      setErr(supabaseThrownMessage(e));
     } finally {
       setBusy(false);
     }
