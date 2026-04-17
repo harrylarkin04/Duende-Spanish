@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Compass, Gamepad2, Headphones, Heart, Sparkles, Swords } from "lucide-react";
+import { Compass, Flame, Gamepad2, Headphones, Heart, Sparkles, Swords } from "lucide-react";
 import Link from "next/link";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,6 +41,13 @@ const games = [
     title: "Culture Quest",
     desc: "Tres ciudades, decisiones en español y souvenirs en tu perfil — ideal para el café.",
     icon: Compass,
+    ready: true,
+  },
+  {
+    href: "/games/poo-feast",
+    title: "Festín olfativo",
+    desc: "Dos jugadores eligen platos en local; gana quien alcance el índice de aroma más alto.",
+    icon: Flame,
     ready: true,
   },
   {
